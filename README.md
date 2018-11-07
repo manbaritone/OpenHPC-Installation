@@ -5,7 +5,7 @@ This guide is method for OpenHPC 1.3.5 installtion which is supported on CentOS 
 For information please see at: https://openhpc.community/downloads/
 
 
-Credit: 
+Credits: 
 1. Atip Peethong
 
    How to Install OpenHPC (part 1/3)(2018): https://www.youtube.com/watch?v=jTBEgdZLmYM
