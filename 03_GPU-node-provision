@@ -284,7 +284,7 @@ Update to Node nvfs image
 Apply update imgae to nodes (rebooting)
 # ssh node1 reboot
 
-Dwonload and install cuda-8.0, cuda-9.0, cuda-10.0 toolkits
+Download and install cuda-8.0, cuda-9.0, cuda-10.0 toolkits
 # cd /root
 # wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run
 # mv cuda_8.0.61_375.26_linux-run cuda_8.0.61_375.26_linux.run
