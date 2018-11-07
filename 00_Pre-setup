@@ -26,6 +26,9 @@ Disable selinux
 # vi /etc/selinux/config
 SELINUX=disabled
 
+Reboot masrter node
+# reboot
+
 Update CentOS
 # yum -y update
 
