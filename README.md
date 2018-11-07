@@ -12,6 +12,6 @@ Credit:
 
    How to Install OpenHPC (part 2/3)(2018): https://www.youtube.com/watch?v=otHHpdpv7Ps
 
-   Installtion guide: https://drive.google.com/open?id=1du_daXvQIHRGQ9RFUaCRtQyUk2BRrJ3A
+   Installtion guide: PDF file please contact to Atip Peethong, e-mail: atip@haii.or.th
 
 2. Sombat Ketrat
