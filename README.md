@@ -1,6 +1,6 @@
 OpenHPC Installation
 
-This guide is method for OpenHPC 1.3.5 installtion which is supported for CentOS 7.5.1804 and diskless compute node.
+This guide is method for OpenHPC 1.3.5 installtion which is supported for CentOS 7.5.1804 and diskless compute nodes.
 
 For more information please see at: https://openhpc.community/downloads/
 
