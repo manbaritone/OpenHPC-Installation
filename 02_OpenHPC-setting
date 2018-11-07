@@ -1,0 +1,26 @@
+Installation essential modules/softwares
+# yum -y install openmpi3-gnu7-ohpc mpich-gnu7-ohpc lmod-defaults-gnu7-openmpi3-ohpc
+# yum -y install \
+    ohpc-base \
+    ohpc-base-compute \
+    ohpc-autotools \
+    ohpc-gnu7-io-libs \
+    ohpc-gnu7-mpich-parallel-libs \
+    ohpc-gnu7-mvapich2-parallel-libs \
+    ohpc-gnu7-openmpi3-parallel-libs \
+    ohpc-gnu7-perf-tools \
+    ohpc-gnu7-python-libs \
+    ohpc-gnu7-serial-libs \
+    openssh-clients
+# yum install --installroot=$CHROOT lmod-defaults-gnu7-openmpi3-ohpc
+
+Copy lmod from compute node to master node
+# cp -r /opt/ohpc/admin/images/centos7.5/opt/ohpc/admin/lmod/ /opt/ohpc/admin/
+
+Copy lmod.sh in $CHROOT/etc/profile.d to /etc/profile.d
+# cp -r $CHROOT/etc/profile.d/lmod* /etc/profile.d
+
+Change vnfs.conf for copy locale folder to compute node by add "#"
+#hybridize += /usr/share/locale
+#hybridize += /usr/lib/locale
+#hybridize += /usr/lib64/locale
