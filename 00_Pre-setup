@@ -1,4 +1,4 @@
-Credit: Atip Peetong
+Credit: Atip Peethong
 
 Please check MAC address for public and internal cards
 
@@ -14,16 +14,18 @@ Hostname: c1
 enp0s3: private network 192.168.1.253 MAC 08:00:27:99:b3:4f
 
 
-Adding host
-
+Add master host
 # vi /etc/hosts
 192.168.1.254 master
 
+Disable firewall
 # systemctl disable firewalld
 # systemctl stop firewalld
 
+Disable selinux
 # vi /etc/selinux/config
 SELINUX=disabled
 
+Update CentOS
 # yum -y update
 
