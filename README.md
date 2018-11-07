@@ -15,3 +15,4 @@ Credit:
    Installtion guide: PDF file please contact to Atip Peethong, e-mail: atip@haii.or.th
 
 2. Sombat Ketrat
+3. https://github.com/dasandata/Open_HPC
