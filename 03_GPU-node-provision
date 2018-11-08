@@ -306,7 +306,7 @@ Add Multiple Cuda Module for GPU Node
 
 Add CUDA Module File by each version
 # export GIT_CLONE_DIR=/root/open_hpc
-# export MODULES_DIR=//opt/ohpc/pub/modulefiles
+# export MODULES_DIR=/opt/ohpc/pub/modulefiles
 # for CUDA_VERSION in 8.0 9.0 10.0 ; do
 cp -a ${GIT_CLONE_DIR}/Module_Template/cuda.lua ${MODULES_DIR}/cuda/${CUDA_VERSION}.lua ;
 sed -i "s/{version}/${CUDA_VERSION}/" ${MODULES_DIR}/cuda/${CUDA_VERSION}.lua ;
