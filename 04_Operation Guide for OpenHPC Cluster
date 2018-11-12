@@ -68,19 +68,20 @@ Credit: https://github.com/dasandata/Open_HPC/blob/master/Opertation%20Guide%20f
 # ml list
 
 8. Add compute node
-# wwsh -y node new c1 --ipaddr=192.168.1.253 --hwaddr=08:00:27:99:B3:4F -D enp0s8 
+# wwsh -y node new c2 --ipaddr=192.168.1.253 --hwaddr=08:00:27:99:B3:4F -D enp0s8 
 # wwsh node list
 # wwsh -y provision set "c2" --vnfs=centos7.5 --bootstrap=`uname -r` --files=dynamic_hosts,passwd,group,shadow,network 
 # systemctl restart gmond 
 # systemctl restart gmetad 
 # systemctl restart dhcpd 
 # wwsh pxe update
-# qmgr -c "create node c2" 
+# qmgr
+create node c2
+exit
+
 # systemctl restart pbs
 # wwsh file resync
 # pdsh -w c2 uptime
 # cd /etc/clustershell/groups.d
-# mv local.cfg local.cfg.orig
-# echo "adm: master" > local.cfg
-# echo "compute: c[1-2]" >> local.cfg
-# echo "all: @adm,@compute" >> local.cfg
+# vi local.cfg
+compute: c[1-2]
