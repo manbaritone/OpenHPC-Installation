@@ -43,23 +43,29 @@ set node c2 resources_available.ngpus=0
 set node c2 resources_available.ncpus=10
 create node master[0]
 create node master[1]
+set node master[0] resources_available.ngpus=1
 set node master[0] resources_available.gpu_id=gpu0
 set node master[0] resources_available.ncpus=2
 set node master[0] sharing = default_excl
+set node master[1] resources_available.ngpus=1
 set node master[1] resources_available.gpu_id=gpu1
 set node master[1] resources_available.ncpus=2
 set node master[1] sharing = default_excl
 create node c1[0]
+set node c1[0] resources_available.ngpus=1
 set node c1[0] resources_available.gpu_id=gpu0
 set node c1[0] resources_available.ncpus=2
 set node c1[0] sharing = default_excl
 create node c2[0]
+set node c2[0] resources_available.ngpus=1
 set node c2[0] resources_available.gpu_id=gpu0
 set node c2[0] resources_available.ncpus=2
 set node c2[0] sharing = default_excl
 exit
 
 # pbsnodes -a
+# nvidia-smi -c 1
+
 
 Add GPU queue
 # qmgr
