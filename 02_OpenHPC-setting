@@ -1,5 +1,5 @@
-**Installation essential modules/softwares**
-```
+Installation essential modules/softwares
+
 yum -y install openmpi3-gnu7-ohpc mpich-gnu7-ohpc lmod-defaults-gnu7-openmpi3-ohpc
 yum -y install \
     ohpc-base \
@@ -14,7 +14,7 @@ yum -y install \
     ohpc-gnu7-serial-libs \
     openssh-clients
 yum install --installroot=$CHROOT lmod-defaults-gnu7-openmpi3-ohpc
-```
+
 
 Copy lmod from compute node to master node
 # cp -r /opt/ohpc/admin/images/centos7.5/opt/ohpc/admin/lmod/ /opt/ohpc/admin/
@@ -35,7 +35,6 @@ Share library to compute nodes
 192.168.1.254:/usr/lib /usr/lib nfs defaults 0 0
 192.168.1.254:/usr/lib64 /usr/lib64 nfs defaults 0 0
 
-
 # vi /etc/exports 
 
 #WWEXPORT:/usr/lib:192.168.1.0/255.255.255.0
@@ -44,10 +43,9 @@ Share library to compute nodes
 #WWEXPORT:/usr/lib64:192.168.1.0/255.255.255.0
 /usr/lib64 192.168.1.0/255.255.255.0(ro,no_root_squash)
 
-exportfs -a
+# exportfs -a
 # systemctl restart nfs-server
 # systemctl enable nfs-server
-
 
 Open Firewalld service
 
