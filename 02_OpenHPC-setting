@@ -25,3 +25,30 @@ Change vnfs.conf for copy locale folder to compute node by add "#"
 #hybridize += /usr/share/locale
 #hybridize += /usr/lib/locale
 #hybridize += /usr/lib64/locale
+
+Open Firewalld service
+
+# service firewalld start
+# service firewalld enable
+
+firewall-cmd --permanent --zone=public --add-service=ssh
+firewall-cmd --permanent --zone=public --add-service=ganglia-client
+firewall-cmd --permanent --zone=public --add-service=ganglia-master
+firewall-cmd --permanent --zone=public --add-service=ganglia-cockpit
+firewall-cmd --permanent --zone=public --add-service=ftp
+firewall-cmd --permanent --zone=public --add-service=http
+firewall-cmd --permanent --zone=public --add-service=https
+firewall-cmd --permanent --zone=public --add-service=imap
+firewall-cmd --permanent --zone=public --add-service=imaps
+firewall-cmd --permanent --zone=public --add-service=pop3
+firewall-cmd --permanent --zone=public --add-service=pop3s
+firewall-cmd --permanent --zone=public --add-service=smtp
+firewall-cmd --permanent --zone=public --add-service=smtps
+firewall-cmd --permanent --zone=public --add-port=10000/tcp
+firewall-cmd --permanent --zone=public --add-port=8000/tcp
+firewall-cmd --add-source=192.168.1.0/24 --permanent --zone=trusted
+firewall-cmd --add-source=0.0.0.0/24 --permanent --zone=trusted
+firewall-cmd --add-source=127.0.0.1/24 --permanent --zone=trusted
+firewall-cmd --permanent --zone=trusted --change-interface=enp0s20f0u9
+
+
