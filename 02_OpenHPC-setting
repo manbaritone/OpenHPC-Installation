@@ -1,4 +1,4 @@
-''''Installation essential modules/softwares''''
+''Installation essential modules/softwares''
 # yum -y install openmpi3-gnu7-ohpc mpich-gnu7-ohpc lmod-defaults-gnu7-openmpi3-ohpc
 # yum -y install \
     ohpc-base \
