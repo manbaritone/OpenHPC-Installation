@@ -71,6 +71,7 @@ Create basic values for OpenHPC
 Create NFS Cilent (by mount /home and /opt/ohpc/pub from master node)
 # echo "192.168.1.254:/home /home nfs nfsvers=3,nodev,nosuid,noatime 0 0" >> $CHROOT/etc/fstab 
 # echo "192.168.1.254:/opt/ohpc/pub /opt/ohpc/pub nfs nfsvers=3,nodev,noatime 0 0" >> $CHROOT/etc/fstab
+# echo "192.168.1.254:/share /share nfs nfsvers=3,nodev,nosuid,noatime 0 0" >> $CHROOT/etc/fstab 
 
 Create NFS Server
 # echo "/home *(rw,no_subtree_check,fsid=10,no_root_squash)" >> /etc/exports 
