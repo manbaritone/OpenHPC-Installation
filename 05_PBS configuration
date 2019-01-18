@@ -1,3 +1,59 @@
+Add holiday times to /var/spool/pbs/sched_priv/holidays
+
+*
+YEAR  2019
+*
+* Prime/Nonprime Table 
+*
+*   Prime Non-Prime
+* Day   Start Start
+*
+  weekday 0800  1730
+  saturday  none  all
+  sunday  none  all
+*
+* Day of  Calendar  Company
+* Year    Date    Holiday
+*
+
+* if a holiday falls on a saturday, it is observed on the friday before
+* if a holiday falls on a sunday, it is observed on the monday after
+
+* Jan 1 
+    1           Jan 1           New Year's Day
+* Jan 2
+    2           Jan 2           Substitution Day for New Year's Day
+* Feb 19
+   50           Feb 19          Makha Bucha Day
+* Apr 8
+   98           Apr 8           Substitution Day for Chakri Memorial Day
+* Apr 15
+  105           Apr 15          Songkran Festival Day
+* May 20
+  140           May 20          Substitution Day for Visakha Bucha Day
+* Jul 16
+  184           Jul 16          Asalha Bucha Day
+* Jul 29
+  201           Jul 29          Substitution Day for His Majesty the King's Birthday
+* Aug 12
+  224           Aug 12          Her Majesty the Queen Mother's Birthday
+* Oct 14
+  287           Oct 14          Substitution Day for King Bhumibol Adulyadej Memorial Day
+* Oct 23
+  296           Oct 23          Chulalongkorn Memorial Day
+* Dec 5
+  339           Dec 5           His Majesty the late King Bhumibol Adulyadej's Birthday
+* Dec 25 
+  359           Dec 25          Christmas Day
+* Dec 26 
+  360           Dec 26          Year-End Holiday
+* Dec 27 
+  361           Dec 27          Year-End Holiday
+* Dec 30 
+  364           Dec 30          Year-End Holiday
+* Dec 31 
+  365           Dec 31          Year-End Holiday
+
 Add compute node to PBS pro 
 # qmgr
 create node master
