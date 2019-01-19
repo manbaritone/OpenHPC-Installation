@@ -30,7 +30,7 @@ Install nvidia-driver and cuda toolkit to compute node
 
 Nvidia device enable on boot (/dev/nvidia*)
 # chroot $CHROOT
-# vi  /etc/init.d/nvidia
+#  
 
 --------------------------------------------------------------------
 #!/bin/bash
