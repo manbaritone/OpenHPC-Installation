@@ -58,11 +58,12 @@ YEAR  2019
 Add GPU resource
 # qmgr
 create resource ngpus type=long, flag=nh
+create resource gpu_id type=string, flag=h
 exit
 
 Edit <sched_priv directory>/sched_config to add ngpus to the list of scheduling resources:
 # vi /var/spool/pbs/sched_priv/sched_config 
-resources: "ncpus, mem, arch, host, vnode, aoe, eoe, ngpus"
+resources: "ncpus, mem, arch, host, vnode, aoe, eoe, ngpus, gpu_id"
 
 # service pbs restart 
 
@@ -73,18 +74,36 @@ Add vnode for cpu and gpu execution
 set node master resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
 set node c1 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
 set node c2 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
-set node c3 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
-create node master-cpu resources_available.ncpus=8, resources_available.mem=64gb, resources_available.ngpus=0, resources_available.host = master, resources_available.vnode = master
-create node master-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master, sharing=default_excl
-create node master-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master, sharing=default_excl
-create node c1-cpu resources_available.ncpus=12, resources_available.mem=32gb, resources_available.ngpus=0, resources_available.host = c1, resources_available.vnode = c1
-create node c1-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c1, resources_available.vnode = c1, sharing=default_excl
-create node c2-cpu resources_available.ncpus=12, resources_available.mem=32gb, resources_available.ngpus=0, resources_available.host = c2, resources_available.vnode = c2
-create node c2-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c2, resources_available.vnode = c2, sharing=default_excl
-create node c3-cpu resources_available.ncpus=12, resources_available.mem=64gb, resources_available.ngpus=0, resources_available.host = c3, resources_available.vnode = c3
-create node c3-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3, sharing=default_excl
-create node c3-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3, sharing=default_excl
+set node c3 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0
 exit
+
+create vnode file for each vnode and scp to each host and ssh to each host
+# ssh host
+# pbs_mom -s insert vnodefile vnodefile
+# service pbs restart
+# exit
+
+vnodefile-cpu
+
+$configversion 2
+master-cpu: Mom=master
+master-cpu: resources_available.ncpus=8
+master-cpu: resources_available.ngpus=0
+master-cpu: resources_available.host=master
+master-cpu: resources_available.vnode=master-cpu
+master-cpu: sharing=default_shared
+master-cpu: Priority=100
+
+vnodefile-gpu
+$configversion 2
+master-gpu0: Mom=master
+master-gpu0: resources_available.ncpus=1
+master-gpu0: resources_available.ngpus=1
+master-gpu0: resources_available.host=master
+master-gpu0: resources_available.vnode=master-gpu0
+master-gpu0: resources_available.gpu_id=gpu0
+master-gpu0: sharing=default_excl
+master-gpu0: Priority=10
 
 # service pbs restart 
 
@@ -95,71 +114,31 @@ create node master
 exit
 # service pbs restart
 
+
 Add cpu queue
 # qmgr
 create queue qcpu 
 set queue qcpu queue_type = Execution 
-set queue qcpu resources_max.nodect = 1
 set queue qcpu resources_default.nodect = 1
-set queue qcpu resources_default.nodes = 1:ppn=6
+set queue qcpu resources_default.nodes = 1:ppn=1
 set queue qcpu resources_default.ncpus = 1
-set queue qcpu resources_max.ncpus = 6
-set queue qcpu max_running=16
-set queue qcpu max_queuable=16
+set queue qcpu resources_default.ngpus = 0
 set queue qcpu enabled = True 
 set queue qcpu started = True
 exit
 # service pbs restart
 
 
-Start PBS Server
-# systemctl start pbs
-
-Add the number of GPU devices available to each execution host in the cluster via qmgr:
-# qmgr
-set node master resources_available.ngpus=0
-set node master resources_available.ncpus=4
-set node c1 resources_available.ngpus=0
-set node c1 resources_available.ncpus=10
-set node c2 resources_available.ngpus=0
-set node c2 resources_available.ncpus=10
-
-vi vnodes-1
-
-$configversion 2
-c3: resources_available.ncpus = 8
-c3: resources_available.ngpus = 0
-c3[0]: resources_available.ncpus = 2 
-c3[0]: resources_available.ngpus = 1 
-c3[0]: resources_available.gpu_id = gpu0 
-c3[0]: sharing = default_excl
-c3[1]: resources_available.ncpus = 2 
-c3[1]: resources_available.ngpus = 1 
-c3[1]: resources_available.gpu_id = gpu1 
-c3[1]: sharing = default_excl
-
-pbs_mom -s insert vnodes-1 vnodes-1
- kill -HUP <PID>
-
-# pbsnodes -a
-# nvidia-smi -c 1
-# nvidia-smi -pm 1
-
-
-Add GPU queue
+Add gpu queue
 # qmgr
 create queue qgpu
 set queue qgpu queue_type = Execution 
-set queue qgpu resources_max.nodect = 1
 set queue qgpu resources_default.nodect = 1
 set queue qgpu resources_default.nodes = 1:ppn=1
-set queue qgpu resources_max.nodes = 1:ppn=6
 set queue qgpu resources_default.ngpus = 1
 set queue qgpu resources_default.ncpus = 1
-set queue qgpu resources_max.ncpus = 6
-set queue qgpu resources_max.ncpus = 2
-set queue qgpu max_running=3
-set queue qgpu max_queuable=3
 set queue qgpu enabled = True 
 set queue qgpu started = True
 exit
+# service pbs restart
+
