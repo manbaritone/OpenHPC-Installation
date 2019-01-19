@@ -108,9 +108,11 @@ Install Ganggila for monitoring OpenHPC
 # cp /etc/ganglia/gmond.conf $CHROOT/etc/ganglia/gmond.conf 
 # echo "gridname MySite.." >> /etc/ganglia/gmetad.conf
 # systemctl enable gmond 
-# systemctl enable gmetad # systemctl start gmond
+# systemctl enable gmetad 
+# systemctl start gmond
 # systemctl start gmetad
-# chroot $CHROOT systemctl enable gmond # systemctl try-restart httpd
+# chroot $CHROOT systemctl enable gmond 
+# systemctl try-restart httpd
 
 Install Clustershell (by adm: master ansd compute:${compute_prefix}[1-${num_computes}] by compute_prefix = c and num_computes =2)
 # yum -y install clustershell-ohpc
