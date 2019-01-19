@@ -29,8 +29,6 @@ Install nvidia-driver and cuda toolkit to compute node
 # yum -y install --installroot=$CHROOT cuda-cudnn*
 
 Nvidia device enable on boot (/dev/nvidia*)
-# vi /etc/init.d/nvidia
-copy text at below
 
 # chroot $CHROOT
 # vi /etc/init.d/nvidia
