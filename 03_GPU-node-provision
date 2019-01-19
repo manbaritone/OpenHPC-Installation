@@ -18,16 +18,13 @@ Install libGLU.so libX11.so libXi.so libXmu.so to compute node
 # yum -y install --installroot=$CHROOT libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* openmotif*
 
 Install nvidia-driver and cuda toolkit to master node 
-# yum -y install nvidia-driver nvidia-settings
-# yum -y install cuda nvidia-driver-cuda
-# yum -y install cuda-devel
-# yum -y install cuda-cudnn*
+# yum -y install nvidia-driver nvidia-settings cuda nvidia-driver-cuda
 
 Install nvidia-driver and cuda toolkit to compute node 
-# yum -y install --installroot=$CHROOT nvidia-driver nvidia-settings
-# yum -y install --installroot=$CHROOT cuda nvidia-driver-cuda
-# yum -y install --installroot=$CHROOT cuda-devel
-# yum -y install --installroot=$CHROOT cuda-cudnn*
+# yum -y install --installroot=$CHROOT nvidia-driver nvidia-settings cuda nvidia-driver-cuda
+
+Install cuda-cudnn
+Download cuda-cudnn rpm files and use yum install *.rpm to install files
 
 Nvidia device enable on boot (/dev/nvidia*)
 
