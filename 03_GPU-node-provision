@@ -5,10 +5,11 @@ Create and source ohpc_variable.sh
 export CHROOT=/opt/ohpc/admin/images/centos7.5
 
 Install CUDA repository on master node
-# yum-config-manager --add-repo=https://negativo17.org/repos/epel-nvidia.repo
+# curl -L -o cuda-repo-rhel7-10.0.130-1.x86_64.rpm http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm
+# yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm
 
 Copy epel-nvidia.repo to compute node
-# cp /etc/yum.repos.d/epel-nvidia.repo $CHROOT/etc/yum.repos.d
+# yum -y install --installroot ${CHROOT} cuda-repo-rhel7-10.0.130-1.x86_64.rpm
 
 Install libGLU.so libX11.so libXi.so libXmu.so to master node
 # yum -y install libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* openmotif*
