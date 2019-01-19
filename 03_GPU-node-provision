@@ -29,8 +29,11 @@ Install nvidia-driver and cuda toolkit to compute node
 # yum -y install --installroot=$CHROOT cuda-cudnn*
 
 Nvidia device enable on boot (/dev/nvidia*)
+# vi /etc/init.d/nvidia
+copy text at below
+
 # chroot $CHROOT
-#  
+# vi /etc/init.d/nvidia
 
 --------------------------------------------------------------------
 #!/bin/bash
@@ -259,6 +262,8 @@ exit $RETVAL
 --------------------------------------------------------------------
 
 # chmod +x /etc/init.d/nvidia
+# exit
+
 # vi /lib/systemd/system/nvidia-gpu.service
 ----------------------------------
 [Unit]
@@ -274,8 +279,9 @@ ExecStop=/etc/init.d/nvidia stop
 [Install]
 WantedBy=multi-user.target
 ----------------------------------
+# chroot $CHROOT
 # systemctl enable nvidia-gpu.service
-exit
+
 
 Update to Node nvfs image
 # wwvnfs --chroot ${CHROOT}
