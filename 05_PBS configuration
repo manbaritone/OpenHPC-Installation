@@ -75,15 +75,15 @@ set node c1 resources_available.ncpus=0, resources_available.mem=0, resources_av
 set node c2 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
 set node c3 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
 create node master-cpu resources_available.ncpus=8, resources_available.mem=64gb, resources_available.ngpus=0, resources_available.host = master, resources_available.vnode = master
-create node master-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master
-create node master-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master
+create node master-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master, sharing=default_excl
+create node master-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master, sharing=default_excl
 create node c1-cpu resources_available.ncpus=12, resources_available.mem=32gb, resources_available.ngpus=0, resources_available.host = c1, resources_available.vnode = c1
-create node c1-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c1, resources_available.vnode = c1
+create node c1-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c1, resources_available.vnode = c1, sharing=default_excl
 create node c2-cpu resources_available.ncpus=12, resources_available.mem=32gb, resources_available.ngpus=0, resources_available.host = c2, resources_available.vnode = c2
-create node c2-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c2, resources_available.vnode = c2
+create node c2-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c2, resources_available.vnode = c2, sharing=default_excl
 create node c3-cpu resources_available.ncpus=12, resources_available.mem=64gb, resources_available.ngpus=0, resources_available.host = c3, resources_available.vnode = c3
-create node c3-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3
-create node c3-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3
+create node c3-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3, sharing=default_excl
+create node c3-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3, sharing=default_excl
 exit
 
 # service pbs restart 
