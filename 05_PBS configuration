@@ -54,6 +54,41 @@ YEAR  2019
 * Dec 31 
   365           Dec 31          Year-End Holiday
 
+
+Add GPU resource
+# qmgr
+create resource ngpus type=long, flag=nh
+exit
+
+Edit <sched_priv directory>/sched_config to add ngpus to the list of scheduling resources:
+# vi /var/spool/pbs/sched_priv/sched_config 
+resources: "ncpus, mem, arch, host, vnode, aoe, eoe, ngpus"
+
+# service pbs restart 
+
+
+Add vnode for cpu and gpu execution
+
+# qmgr
+set node master resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
+set node c1 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
+set node c2 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
+set node c3 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
+create node master-cpu resources_available.ncpus=8, resources_available.mem=64gb, resources_available.ngpus=0, resources_available.host = master, resources_available.vnode = master
+create node master-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master
+create node master-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = master, resources_available.vnode = master
+create node c1-cpu resources_available.ncpus=12, resources_available.mem=32gb, resources_available.ngpus=0, resources_available.host = c1, resources_available.vnode = c1
+create node c1-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c1, resources_available.vnode = c1
+create node c2-cpu resources_available.ncpus=12, resources_available.mem=32gb, resources_available.ngpus=0, resources_available.host = c2, resources_available.vnode = c2
+create node c2-gpu1 resources_available.ncpus=1, resources_available.mem=32gb, resources_available.ngpus=1, resources_available.host = c2, resources_available.vnode = c2
+create node c3-cpu resources_available.ncpus=12, resources_available.mem=64gb, resources_available.ngpus=0, resources_available.host = c3, resources_available.vnode = c3
+create node c3-gpu1 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3
+create node c3-gpu2 resources_available.ncpus=1, resources_available.mem=64gb, resources_available.ngpus=1, resources_available.host = c3, resources_available.vnode = c3
+exit
+
+# service pbs restart 
+
+
 Add compute node to PBS pro 
 # qmgr
 create node master
@@ -76,15 +111,6 @@ set queue qcpu started = True
 exit
 # service pbs restart
 
-Add GPU resource
-# qmgr
-create resource ngpus type=long, flag=nh
-exit
-# systemctl stop pbs
-
-Edit <sched_priv directory>/sched_config to add ngpus to the list of scheduling resources:
-# vi /var/spool/pbs/sched_priv/sched_config 
-resources: “ncpus, mem, arch, host, vnode, ngpus, gpu_id”
 
 Start PBS Server
 # systemctl start pbs
