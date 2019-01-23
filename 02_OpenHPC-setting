@@ -6,6 +6,7 @@ gnu8-compilers-ohpc intel-mpi-devel-ohpc openmpi3-gnu8-ohpc openmpi3-intel-ohpc 
 yum install --installroot=$CHROOT lmod-defaults-gnu7-openmpi3-ohpc
 yum -y install *gnu7-mpich* --exclude=lmod*
 yum -y install *intel-*-ohpc --exclude=lmod*
+yum -y install *-impi-* --exclude=lmod*
 
 Copy lmod from compute node to master node
 # cp -r /opt/ohpc/admin/images/centos7.5/opt/ohpc/admin/lmod/ /opt/ohpc/admin/
