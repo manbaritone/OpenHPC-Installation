@@ -99,19 +99,19 @@ PropagateResourceLimitsExcept=MEMLOCK
 AccountingStorageType=accounting_storage/filetxt
 Epilog=/etc/slurm/slurm.epilog.clean
 #
-NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 RealMemory=55000
-NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 RealMemory=24000
-NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Sockets=1 CoresPerSocket=4 ThreadsPerCore=2 RealMemory=45000
-PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES
+NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 RealMemory=55000 State=UNKNOWN
+NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 RealMemory=24000 State=UNKNOWN
+NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Sockets=1 CoresPerSocket=4 ThreadsPerCore=2 RealMemory=45000 State=UNKNOWN
+PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
 GresTypes=gpu
-PartitionName=qgpu Nodes=c[1-2],master Shared=NO Default=NO MaxCPUsPerNode=2
+PartitionName=qgpu Nodes=c[1-2],master Shared=NO Default=NO MaxCPUsPerNode=2 State=UP
 SchedulerType=sched/backfill
 SelectType=select/cons_res
 SelectTypeParameters=CR_CPU
 ReturnToService=1
 
 
-Creat file gres.conf
+Creat file gres.conf [Upload to each host]
 
 # vi /etc/slurm/gres.conf
 Name=gpu File=/dev/nvidia0
