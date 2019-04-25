@@ -12,8 +12,9 @@ Setup Time Server by point to KU server
 # echo "server ntp.ku.ac.th" >> /etc/ntp.conf 
 # systemctl restart ntpd
 
-Install PBSPro
-# yum -y install pbspro-server-ohpc
+Install Slurm
+# yum -y install ohpc-slurm-server
+# perl -pi -e "s/ControlMachine=\S+/ControlMachine=master/" /etc/slurm/slurm.conf
 
 Detemine enp0s3 for internal interface
 # perl -pi -e "s/device = eth1/device = enp0s3/" /etc/warewulf/provision.conf
@@ -41,18 +42,13 @@ Install OpenHPC for compute node
 Copy resolv.conf to compute node
 # cp -p /etc/resolv.conf $CHROOT/etc/resolv.conf
 
+Install slurm client in image compute node and master node
+# yum -y --installroot=$CHROOT install ohpc-slurm-client
+# yum -y install ohpc-slurm-client
+
 Add master host node to compute node
 # vi $CHROOT/etc/hosts
 master  192.168.1.254
-
-Install PBSPro for compute node
-# yum -y --installroot=$CHROOT install pbspro-execution-ohpc
-# perl -pi -e "s/PBS_SERVER=\S+/PBS_SERVER=master/" $CHROOT/etc/pbs.conf
-# echo "PBS_LEAF_NAME=master" >> /etc/pbs.conf
-# perl -pi -e "s/\$clienthost \S+/\$clienthost master/" $CHROOT/var/spool/pbs/mom_priv/config 
-# chroot $CHROOT opt/pbs/libexec/pbs_habitat
-# echo "\$usecp *:/home /home" >> $CHROOT/var/spool/pbs/mom_priv/config
-# chroot $CHROOT systemctl enable pbs
 
 Install NTP for compute node
 # yum -y --installroot=$CHROOT install ntp
@@ -83,6 +79,29 @@ Create NFS Server
 Determine kernel setting for compute node
 # chroot $CHROOT systemctl enable ntpd
 # echo "server 192.168.1.254" >> $CHROOT/etc/ntp.conf
+
+Update basic slurm configuration
+# perl -pi -e "s/^NodeName=(\S+)/NodeName=c[1-2]/" /etc/slurm/slurm.conf
+# perl -pi -e "s/^PartitionName=normal Nodes=(\S+)/PartitionName=normal Nodes=c[1-2]/" /etc/slurm/slurm.conf
+# perl -pi -e "s/^Sockets=(\S+)/Sockets=1/" /etc/slurm/slurm.conf
+# perl -pi -e "s/^CoresPerSocket=(\S+)/CoresPerSocket=2/" /etc/slurm/slurm.conf
+# perl -pi -e "s/^ThreadsPerCore=(\S+)/ThreadsPerCore=1/" /etc/slurm/slurm.conf
+ClusterName=galaxy.cluster
+SlurmctldHost=master
+
+# perl -pi -e "s/^NodeName=(\S+)/NodeName=c[1-2]/" $CHROOT/etc/slurm/slurm.conf
+# perl -pi -e "s/^PartitionName=normal Nodes=(\S+)/PartitionName=normal Nodes=c[1-2]/" $CHROOT/etc/slurm/slurm.conf
+# perl -pi -e "s/^Sockets=(\S+)/Sockets=1/" $CHROOT/etc/slurm/slurm.conf
+# perl -pi -e "s/^CoresPerSocket=(\S+)/CoresPerSocket=2/" $CHROOT/etc/slurm/slurm.conf
+# perl -pi -e "s/^ThreadsPerCore=(\S+)/ThreadsPerCore=1/" $CHROOT/etc/slurm/slurm.conf
+ClusterName=galaxy.cluster
+SlurmctldHost=master
+
+# systemctl enable munge
+# systemctl enable slurmctld
+# systemctl start munge
+# systemctl start slurmctld
+# chroot $CHROOT systemctl enable slurm
 
 Determine memlock values
 # perl -pi -e 's/# End of file/\* soft memlock unlimited\n$&/s' /etc/security/limits.conf
@@ -125,7 +144,9 @@ Install Clustershell (by adm: master ansd compute:${compute_prefix}[1-${num_comp
 Import files using in OpenHPC
 # wwsh file import /etc/passwd 
 # wwsh file import /etc/group
-# wwsh file import /etc/shadow 
+# wwsh file import /etc/shadow
+# wwsh file import /etc/slurm/slurm.conf
+# wwsh file import /etc/munge/munge.key
 # wwsh file list
 
 Determine bootstrap image
@@ -151,8 +172,8 @@ We have 2 compute nodes
 # wwsh node list
 
 Determine VNFS for compute node
-# wwsh -y provision set "c1" --vnfs=centos7.5 --bootstrap=`uname -r` --files=dynamic_hosts,passwd,group,shadow,network 
-# wwsh -y provision set "c2" --vnfs=centos7.5 --bootstrap=`uname -r` --files=dynamic_hosts,passwd,group,shadow,network 
+# wwsh -y provision set "c1" --vnfs=centos7.5 --bootstrap=`uname -r` --files=dynamic_hosts,passwd,group,shadow,slurm.conf,munge.key,network
+# wwsh -y provision set "c2" --vnfs=centos7.5 --bootstrap=`uname -r` --files=dynamic_hosts,passwd,group,shadow,slurm.conf,munge.key,network
 # wwsh provision list
 
 Restart ganglia services
@@ -161,17 +182,6 @@ Restart ganglia services
 # systemctl restart dhcpd 
 # wwsh pxe update
 
-Determine resource for pbs system
-# systemctl enable pbs
-# systemctl start pbs
-# . /etc/profile.d/pbs.sh
-# qmgr -c "set server default_qsub_arguments= -V"
-# qmgr -c "set server resources_default.place=scatter" 
-# qmgr -c "set server job_history_enable=True"
-# qmgr -c "create node c1" 
-# qmgr -c "create node c2" 
-# pbsnodes -a
-
 Sync all file to compute node
 # wwsh file resync
 
@@ -179,3 +189,21 @@ Compute node installation (by booting from network with MAC Address)
 Open compute node and waiting for finish and you can check by:
 # pdsh -w c1 uptime
 # pdsh -w c[1-2] uptime
+
+Resource Manager Startup
+# systemctl restart munge
+# systemctl restart slurmctld
+# pdsh -w c[1-2] systemctl restart slurmd
+
+Test mung by
+# munge -n | unmunge
+# munge -n | ssh c1 unmunge
+# munge -n | ssh c2 unmunge
+
+Test slurm by
+# systemctl status slurmctld
+# ssh c1 systemctl status slurmd
+# ssh c2 systemctl status slurmd
+
+Test resource by
+# scontrol show nodes
