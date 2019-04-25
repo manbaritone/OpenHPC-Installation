@@ -61,7 +61,7 @@ KillWait=30
 Waittime=0
 #
 # SCHEDULING
-SchedulerType=sched/backfill
+#SchedulerType=sched/backfill
 #SchedulerAuth=
 #SelectType=select/linear
 FastSchedule=1
@@ -94,28 +94,30 @@ JobCompType=jobcomp/none
 #
 # COMPUTE NODES
 # OpenHPC default configuration
-TaskPlugin=task/affinity
-PropagateResourceLimitsExcept=MEMLOCK
-AccountingStorageType=accounting_storage/filetxt
-Epilog=/etc/slurm/slurm.epilog.clean
+#TaskPlugin=task/affinity
+#PropagateResourceLimitsExcept=MEMLOCK
+#AccountingStorageType=accounting_storage/filetxt
+#Epilog=/etc/slurm/slurm.epilog.clean
 #
-NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 RealMemory=55000 State=UNKNOWN
-NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 RealMemory=24000 State=UNKNOWN
-NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Sockets=1 CoresPerSocket=4 ThreadsPerCore=2 RealMemory=45000 State=UNKNOWN
-PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
 GresTypes=gpu
-PartitionName=qgpu Nodes=c[1-2],master Shared=NO Default=NO MaxCPUsPerNode=2 State=UP
 SchedulerType=sched/backfill
 SelectType=select/cons_res
 SelectTypeParameters=CR_CPU
-ReturnToService=1
+NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
+NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=25000
+NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Procs=8 Sockets=1 CoresPerSocket=4 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
+PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
+PartitionName=qgpu Nodes=master,c[1-2] Shared=NO Default=NO MaxCPUsPerNode=2 State=UP
+ReturnToService=0
+DebugFlags=NO_CONF_HASH
 
 
-Creat file gres.conf [Upload to each host]
+Creat file gres.conf
 
 # vi /etc/slurm/gres.conf
-Name=gpu File=/dev/nvidia0
-Name=gpu File=/dev/nvidia1
+NodeName=master Name=gpu File=/dev/nvidia[0-1]
+NodeName=c1 Name=gpu File=/dev/nvidia0
+NodeName=c2 Name=gpu File=/dev/nvidia0
 
 systemctl restart slurmctld
 systemctl restart slurmd
