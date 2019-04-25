@@ -97,7 +97,7 @@ JobCompType=jobcomp/none
 #JobCompLoc=
 #
 # ACCOUNTING
-#JobAcctGatherType=jobacct_gather/linux
+JobAcctGatherType=jobacct_gather/none
 #JobAcctGatherFrequency=30
 #
 AccountingStorageType=accounting_storage/slurmdbd
