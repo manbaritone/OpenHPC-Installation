@@ -46,25 +46,39 @@ ProctrackType=proctrack/pgid
 #SrunEpilog=
 #TaskProlog=
 #TaskEpilog=
-#TaskPlugin=
+TaskPlugin=task/none
 #TrackWCKey=no
 #TreeWidth=50
 #TmpFS=
 #UsePAM=
 #
 # TIMERS
-SlurmctldTimeout=300
-SlurmdTimeout=300
+#BatchStartTimeout=10
+#CompleteWait=0
+#EpilogMsgTime=2000
+#GetEnvTimeout=2
+#HealthCheckInterval=0
+#HealthCheckProgram=
 InactiveLimit=0
-MinJobAge=300
 KillWait=30
+#MessageTimeout=10
+#ResvOverRun=0
+MinJobAge=300
+#OverTimeLimit=0
+SlurmctldTimeout=120
+SlurmdTimeout=300
+#UnkillableStepTimeout=60
+#VSizeFactor=0
 Waittime=0
 #
 # SCHEDULING
-#SchedulerType=sched/backfill
+SchedulerType=sched/backfill
 #SchedulerAuth=
 #SelectType=select/linear
 FastSchedule=1
+SchedulerPort=7321
+SelectType=select/cons_res
+SelectTypeParameters=CR_CPU
 #PriorityType=priority/multifactor
 #PriorityDecayHalfLife=14-0
 #PriorityUsageResetPeriod=14-0
@@ -94,22 +108,18 @@ JobCompType=jobcomp/none
 #
 # COMPUTE NODES
 # OpenHPC default configuration
-#TaskPlugin=task/affinity
 #PropagateResourceLimitsExcept=MEMLOCK
 #AccountingStorageType=accounting_storage/filetxt
 #Epilog=/etc/slurm/slurm.epilog.clean
 #
 GresTypes=gpu
-SchedulerType=sched/backfill
-SelectType=select/cons_res
-SelectTypeParameters=CR_CPU
 NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
 NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=25000
 NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Procs=8 Sockets=1 CoresPerSocket=4 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
 PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
 PartitionName=qgpu Nodes=master,c[1-2] Shared=NO Default=NO MaxCPUsPerNode=2 State=UP
-ReturnToService=0
 DebugFlags=NO_CONF_HASH
+ReturnToService=2
 
 
 Creat file gres.conf
