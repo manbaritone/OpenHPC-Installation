@@ -138,7 +138,5 @@ scontrol show nodes
 
 Change state of node
 
-# scontrol
-scontrol: update NodeName=node10 State=DOWN Reason="undraining"
-scontrol: update NodeName=node10 State=RESUME
-scontrol: show node node10
+# scontrol for compute node after reboot
+scontrol update NodeName=c[1-2] State=RESUME
