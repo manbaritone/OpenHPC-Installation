@@ -100,20 +100,28 @@ JobCompType=jobcomp/none
 JobAcctGatherType=jobacct_gather/none
 #JobAcctGatherFrequency=30
 #
-#AccountingStorageType=accounting_storage/slurmdbd
-#AccountingStorageHost=master
-#AccountingStorageLoc=
-#AccountingStoragePass=
-#AccountingStorageUser=
+AccountingStorageType=accounting_storage/slurmdbd
+AccountingStorageHost=master
+AccountingStoragePort=6819
+AccountingStoreJobComment=YES
+AccountingStorageLoc=slurm_acct_db
+AccountingStoragePass=/var/run/munge/munge.socket.2
+AccountingStorageUser=slurm
+#
+JobCompHost=master
+JobCompLoc=slurm_acct_db
+JobCompPass=slurm@1234
+#JobCompPort=
+#JobCompType=jobcomp/slurmdbdJobCompUser=slurm
+#JobContainerPlugin=job_container/none
 #
 # COMPUTE NODES
 # OpenHPC default configuration
 #PropagateResourceLimitsExcept=MEMLOCK
-#AccountingStorageType=accounting_storage/filetxt
 #Epilog=/etc/slurm/slurm.epilog.clean
 #
 GresTypes=gpu
-NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
+NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
 NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=25000
 NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Procs=8 Sockets=1 CoresPerSocket=4 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
 PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
@@ -121,12 +129,11 @@ PartitionName=qgpu Nodes=master,c[1-2] Shared=NO Default=NO MaxCPUsPerNode=2 Sta
 DebugFlags=NO_CONF_HASH
 ReturnToService=2
 
-
 Creat file gres.conf
 
 # vi /etc/slurm/gres.conf
 NodeName=master Name=gpu File=/dev/nvidia[0-1]
-NodeName=c1 Name=gpu File=/dev/nvidia0
+NodeName=c1 Name=gpu File=/dev/nvidia[0-1]
 NodeName=c2 Name=gpu File=/dev/nvidia0
 
 systemctl restart slurmctld
@@ -140,3 +147,56 @@ Change state of node
 
 # scontrol for compute node after reboot
 scontrol update NodeName=c[1-2] State=RESUME
+
+Create slurmdbd.conf
+
+#
+# Example slurmdbd.conf file.
+#
+# See the slurmdbd.conf man page for more information.
+#
+# Archive info
+ArchiveJobs=yes
+#ArchiveDir="/tmp"
+ArchiveSteps=yes
+#ArchiveScript=
+#JobPurge=12
+#StepPurge=1
+#
+# Authentication info
+AuthType=auth/munge
+AuthInfo=/var/run/munge/munge.socket.2
+#
+# slurmDBD info
+DbdAddr=master
+DbdHost=master
+DbdPort=6819
+SlurmUser=slurm
+#MessageTimeout=300
+DebugLevel=4
+#DefaultQOS=normal,standby
+LogFile=/var/log/slurm/slurmdbd.log
+PidFile=/var/run/slurmdbd.pid
+#PluginDir=/usr/lib/slurm
+#PrivateData=accounts,users,usage,jobs
+#TrackWCKey=yes
+#
+# Database info
+StorageType=accounting_storage/mysql
+StorageHost=localhost
+StoragePort=3306
+StoragePass=slurm@1234
+StorageUser=slurm
+StorageLoc=slurm_acct_db
+
+Setup mysql
+
+# mysql -p
+mysql> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'some_pass' with grant option;
+mysql> create database slurm_acct_db;
+mysql> quit;
+
+systemctl start slurmdbd
+systemctl restart slurmctld
+
+sacctmgr add cluster galaxy.cluster
