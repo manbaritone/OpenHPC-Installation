@@ -192,7 +192,7 @@ StorageLoc=slurm_acct_db
 Setup mysql
 
 # mysql -p
-mysql> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'some_pass' with grant option;
+mysql> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'slurm@1234' with grant option;
 mysql> create database slurm_acct_db;
 mysql> quit;
 
