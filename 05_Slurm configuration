@@ -76,7 +76,7 @@ SchedulerType=sched/backfill
 #SchedulerAuth=
 #SelectType=select/linear
 FastSchedule=1
-SchedulerPort=7321
+#SchedulerPort=7321
 SelectType=select/cons_res
 SelectTypeParameters=CR_CPU
 #PriorityType=priority/multifactor
@@ -100,8 +100,8 @@ JobCompType=jobcomp/none
 JobAcctGatherType=jobacct_gather/none
 #JobAcctGatherFrequency=30
 #
-AccountingStorageType=accounting_storage/slurmdbd
-AccountingStorageHost=master
+#AccountingStorageType=accounting_storage/slurmdbd
+#AccountingStorageHost=master
 #AccountingStorageLoc=
 #AccountingStoragePass=
 #AccountingStorageUser=
@@ -140,21 +140,3 @@ Change state of node
 
 # scontrol for compute node after reboot
 scontrol update NodeName=c[1-2] State=RESUME
-
-Setup Slurm Database
-
-# cp /etc/slurm/slurmdbd.conf.example /etc/slurm/slurmdbd.conf
-
-#DbdAddr=localhost
-DbdHost=master
-# Database info
-StorageType=accounting_storage/mysql
-StorageHost=localhost
-#StoragePort=1234
-StoragePass=slurm1234
-StorageUser=slurm
-StorageLoc=slurm_acct_db
-
-mkdir /var/log/slurm
-touch /var/log/slurm/slurmdbd.log
-
