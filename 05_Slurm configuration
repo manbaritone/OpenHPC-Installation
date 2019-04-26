@@ -117,13 +117,13 @@ JobCompPass=slurm@1234
 #
 # COMPUTE NODES
 # OpenHPC default configuration
-#PropagateResourceLimitsExcept=MEMLOCK
-#Epilog=/etc/slurm/slurm.epilog.clean
+PropagateResourceLimitsExcept=MEMLOCK
+Epilog=/etc/slurm/slurm.epilog.clean
 #
 GresTypes=gpu
-NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
-NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=6 ThreadsPerCore=2 State=UNKNOWN RealMemory=25000
-NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Procs=8 Sockets=1 CoresPerSocket=4 ThreadsPerCore=2 State=UNKNOWN RealMemory=55000
+NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Procs=12 Sockets=1 CoresPerSocket=12 ThreadsPerCore=1 State=UNKNOWN RealMemory=55000
+NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=12 ThreadsPerCore=1 State=UNKNOWN RealMemory=25000
+NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Procs=8 Sockets=1 CoresPerSocket=8 ThreadsPerCore=1 State=UNKNOWN RealMemory=55000
 PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
 PartitionName=qgpu Nodes=master,c[1-2] Shared=NO Default=NO MaxCPUsPerNode=2 State=UP
 DebugFlags=NO_CONF_HASH
