@@ -118,7 +118,7 @@ JobCompPass=slurm@1234
 # COMPUTE NODES
 # OpenHPC default configuration
 PropagateResourceLimitsExcept=MEMLOCK
-Epilog=/etc/slurm/slurm.epilog.clean
+#Epilog=/etc/slurm/slurm.epilog.clean
 #
 GresTypes=gpu
 NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Procs=12 Sockets=1 CoresPerSocket=12 ThreadsPerCore=1 State=UNKNOWN RealMemory=55000
