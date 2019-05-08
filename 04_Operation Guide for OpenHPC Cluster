@@ -40,7 +40,7 @@ Credit: https://github.com/dasandata/Open_HPC/blob/master/Opertation%20Guide%20f
 # ml av
 
 6. Install Python 3.5.4
-# yum -y install zlib-devel bzip2-devel sqlite sqlite-devel openssl-devel
+# yum -y install zlib-devel bzip2-devel sqlite sqlite-devel openssl-devel libffi-devel
 # cd /root
 # PYTHON_VERSION=3.5.4
 # wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
