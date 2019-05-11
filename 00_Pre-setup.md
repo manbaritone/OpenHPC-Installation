@@ -19,8 +19,8 @@ enp0s3: private network 192.168.1.253 MAC 08:00:27:99:b3:4f
 ### Add master host
 ```
 # vi /etc/hosts
-```
 192.168.1.254 master
+```
 
 ```
 hostnamectl set-hostnname master
@@ -35,8 +35,8 @@ hostnamectl set-hostnname master
 ### Disable selinux
 ```
 # vi /etc/selinux/config
-```
 SELINUX=disabled
+```
 
 ### Reboot master node 
 ```
