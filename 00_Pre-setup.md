@@ -14,23 +14,23 @@ Hostname: c1\
 enp0s3: private network 192.168.1.253 MAC 08:00:27:99:b3:4f\
 
 
-### Add master host\
+### Add master host
 `vi /etc/hosts`\
 192.168.1.254 master\
 
 `hostnamectl set-hostnname master`\
 
-### Disable firewall\
+### Disable firewall
 `systemctl disable firewalld`\
 `systemctl stop firewalld`\
 
-### Disable selinux\
+### Disable selinux
 `vi /etc/selinux/config`\
 SELINUX=disabled\
 
-### Reboot master node\ 
+### Reboot master node 
 `reboot`\
 
-### Update CentOS\
+### Update CentOS
 `yum -y update`\
 
