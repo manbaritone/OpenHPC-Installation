@@ -73,8 +73,8 @@ Credit: Atip Peethong
 ### Add master host node to compute node
 ```
 # vi $CHROOT/etc/hosts
-```
 master  192.168.1.254
+```
 
 ### Install NTP for compute node
 ```
@@ -82,7 +82,9 @@ master  192.168.1.254
 ```
 
 ### Install kernel for compute node
+```
 # yum -y --installroot=$CHROOT install kernel
+```
 
 ### Install modules user enviroment for compute node and master node
 ```
