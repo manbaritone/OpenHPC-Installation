@@ -189,6 +189,14 @@ StoragePass=slurm@1234
 StorageUser=slurm
 StorageLoc=slurm_acct_db
 
+PurgeEventAfter=12months
+PurgeJobAfter=12months
+PurgeResvAfter=2months
+PurgeStepAfter=2months
+PurgeSuspendAfter=1month
+PurgeTXNAfter=12months
+PurgeUsageAfter=12months
+
 Setup mysql
 
 # mysql -p
