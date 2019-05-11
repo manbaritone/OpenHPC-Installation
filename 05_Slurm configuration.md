@@ -1,3 +1,5 @@
+### Edit configuration file
+```
 # vi /etc/slurm/slurm.conf
 
 https://slurm.schedmd.com/configurator.html
@@ -128,28 +130,33 @@ PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
 PartitionName=qgpu Nodes=master,c[1-2] Shared=NO Default=NO MaxCPUsPerNode=2 State=UP
 DebugFlags=NO_CONF_HASH
 ReturnToService=2
+```
 
-Creat file gres.conf
-
+### Create file gres.conf
+```
 # vi /etc/slurm/gres.conf
 NodeName=master Name=gpu File=/dev/nvidia[0-1]
 NodeName=c1 Name=gpu File=/dev/nvidia[0-1]
 NodeName=c2 Name=gpu File=/dev/nvidia0
+```
 
+```
 systemctl restart slurmctld
 systemctl restart slurmd
 systemctl restart munge
 pdsh -w c[1-2] systemctl restart slurmd
 pdsh -w c[1-2] systemctl restart munge
 scontrol show nodes
+```
 
-Change state of node
-
+### Change state of node
+```
 # scontrol for compute node after reboot
 scontrol update NodeName=c[1-2] State=RESUME
+```
 
-Create slurmdbd.conf
-
+### Create slurmdbd.conf
+```
 #
 # Example slurmdbd.conf file.
 #
@@ -196,15 +203,18 @@ PurgeStepAfter=2months
 PurgeSuspendAfter=1month
 PurgeTXNAfter=12months
 PurgeUsageAfter=12months
+```
 
-Setup mysql
-
+### Setup mysql
+```
 # mysql -p
 mysql> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'slurm@1234' with grant option;
 mysql> create database slurm_acct_db;
 mysql> quit;
+```
 
+```
 systemctl start slurmdbd
 systemctl restart slurmctld
-
 sacctmgr add cluster galaxy.cluster
+```
