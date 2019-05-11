@@ -116,7 +116,7 @@ master  192.168.1.254
 `systemctl try-restart httpd`
 
 ### Install Clustershell 
-### (by adm: master ansd compute:${compute_prefix}[1-${num_computes}] by compute_prefix = c and num_computes =2)
+(by adm: master ansd compute:${compute_prefix}[1-${num_computes}] by compute_prefix = c and num_computes =2)\
 `yum -y install clustershell-ohpc`\
 `cd /etc/clustershell/groups.d`\
 `mv local.cfg local.cfg.orig`\
@@ -136,13 +136,13 @@ master  192.168.1.254
 `echo "drivers += overlay" >> $WW_CONF`
 
 ### Setup bootstrap image
-`wwbootstrap `uname -r``
+wwbootstrap `uname -r`
 
 ### Create Virtual Node File System (VNFS) image
 `wwvnfs --chroot $CHROOT`
 
 ### Determine compute node by MAC Address
-### (by GATEWAYDEV=enp0s8 is Public interface // using in internal lan group)
+(by GATEWAYDEV=enp0s8 is Public interface // using in internal lan group)\
 `echo "GATEWAYDEV=enp0s8" > /tmp/network.$$`\
 `wwsh -y file import /tmp/network.$$ --name network`\
 `wwsh -y file set network --path /etc/sysconfig/network --mode=0644 --uid=0`\
@@ -162,7 +162,7 @@ We have 2 compute nodes
 `systemctl restart gmond`\
 `systemctl restart gmetad`\
 `systemctl restart dhcpd`\
-`wwsh pxe update1`
+`wwsh pxe update`
 
 ### Determine resource for pbs system
 `systemctl enable pbs`\
@@ -179,6 +179,6 @@ We have 2 compute nodes
 `wwsh file resync`
 
 ### Compute node installation (by booting from network with MAC Address)
-Open compute node and waiting for finish and you can check by:
+Open compute node and waiting for finish and you can check by:\
 `pdsh -w c1 uptime`\
 `pdsh -w c[1-2] uptime`
