@@ -115,7 +115,7 @@ master  192.168.1.254
 `systemctl try-restart httpd`
 
 ### Install Clustershell (by adm: master ansd compute:${compute_prefix}[1-${num_computes}] by compute_prefix = c and num_computes =2)
-`yum -y install clustershell-ohpc`
+`yum -y install clustershell-ohpc`\
 `cd /etc/clustershell/groups.d`\
 `mv local.cfg local.cfg.orig`\
 `echo "adm: master" > local.cfg`\
@@ -134,7 +134,7 @@ master  192.168.1.254
 `echo "drivers += overlay" >> $WW_CONF`
 
 ### Setup bootstrap image
-`wwbootstrap `uname -r``
+wwbootstrap `uname -r`
 
 ### Create Virtual Node File System (VNFS) image
 `wwvnfs --chroot $CHROOT`
