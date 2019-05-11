@@ -13,6 +13,8 @@ enp0s8: public network 192.168.11.6
 Hostname: c1\
 enp0s3: private network 192.168.1.253 MAC 08:00:27:99:b3:4f
 
+
+
 ### Add master host
 ```
 vi /etc/hosts
