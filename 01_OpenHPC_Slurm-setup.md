@@ -73,6 +73,7 @@ Credit: Atip Peethong
 ### Add master host node to compute node
 ```
 # vi $CHROOT/etc/hosts
+
 master  192.168.1.254
 ```
 
