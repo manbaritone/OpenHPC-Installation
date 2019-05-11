@@ -25,7 +25,7 @@ sinfo
 **Example:**
 Using sinfo it shows 3 nodes are in drain state,
 
-PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST\
 all*         up   infinite      3  drain node[10,11,12]
 
 ```
