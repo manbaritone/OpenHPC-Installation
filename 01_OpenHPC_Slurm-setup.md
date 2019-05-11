@@ -24,7 +24,7 @@ Credit: Atip Peethong
 # perl -pi -e "s/ControlMachine=\S+/ControlMachine=master/" /etc/slurm/slurm.conf
 ```
 
-### Detemine enp0s3 for internal interface
+### Determine enp0s3 for internal interface
 ```
 # perl -pi -e "s/device = eth1/device = enp0s3/" /etc/warewulf/provision.conf
 ```
