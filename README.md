@@ -1,8 +1,12 @@
 ## OpenHPC Installation with PBS-Pro & Slurm job scheduler
 
-This guide is method for OpenHPC 1.3.5 installtion which is supported for CentOS 7.5.1804 and diskless compute nodes.
+This guide is method for OpenHPC 1.3.5 installtion which is supported for CentOS 7.5.1804 with diskless compute nodes.
 
 For more information please see at: https://openhpc.community/downloads/
+
+If you have any question, pleace contact to me: bundit.b@hotmail.com
+
+Enjoys!!!
 
 ```
 Credits: 
