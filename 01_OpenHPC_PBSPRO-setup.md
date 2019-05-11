@@ -42,7 +42,7 @@ Credit: Atip Peethong
 `cp -p /etc/resolv.conf $CHROOT/etc/resolv.conf`
 
 ### Add master host node to compute node
-`vi $CHROOT/etc/hosts`
+`vi $CHROOT/etc/hosts`\
 master  192.168.1.254
 
 ### Install PBSPro for compute node
@@ -61,7 +61,7 @@ master  192.168.1.254
 `yum -y --installroot=$CHROOT install kernel`
 
 ### Install modules user enviroment for compute node and master node
-`yum -y --installroot=$CHROOT install lmod-ohpc`
+`yum -y --installroot=$CHROOT install lmod-ohpc`\
 `yum -y install lmod-ohpc`
 
 ### Create basic values for OpenHPC
@@ -75,10 +75,10 @@ master  192.168.1.254
 
 ### Create NFS Server
 `echo "/home *(rw,no_subtree_check,fsid=10,no_root_squash)" >> /etc/exports`\
-# echo "/opt/ohpc/pub *(ro,no_subtree_check,fsid=11)" >> /etc/exports`\
-# exportfs -a`\
-# systemctl restart nfs-server`\
-# systemctl enable nfs-server`
+`echo "/opt/ohpc/pub *(ro,no_subtree_check,fsid=11)" >> /etc/exports`\
+`exportfs -a`\
+`systemctl restart nfs-server`\
+`systemctl enable nfs-server`
 
 ### Determine kernel setting for compute node
 `chroot $CHROOT systemctl enable ntpd`\
