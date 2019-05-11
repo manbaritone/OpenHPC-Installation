@@ -1,5 +1,4 @@
 ![OpenHPC Banner](https://repository-images.githubusercontent.com/156569976/556be300-746a-11e9-976f-abad06787c0f)
-Format: ![Alt Text](url)
 
 ## OpenHPC Installation with PBS-Pro & Slurm job scheduler
 
