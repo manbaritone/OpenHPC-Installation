@@ -136,7 +136,8 @@ master  192.168.1.254
 ### Determine rsyslog for compute node by point to master node
 ```
 # perl -pi -e "s/\\#\\\$ModLoad imudp/\\\$ModLoad imudp/" /etc/rsyslog.conf
-# perl -pi -e "s/\\#\\\$UDPServerRun 514/\\\$UDPServerRun 514/" /etc/rsyslog.conf # systemctl restart rsyslog
+# perl -pi -e "s/\\#\\\$UDPServerRun 514/\\\$UDPServerRun 514/" /etc/rsyslog.conf 
+# systemctl restart rsyslog
 # echo "*.* @192.168.1.254:514" >> $CHROOT/etc/rsyslog.conf
 # perl -pi -e "s/^\*\.info/\\#\*\.info/" $CHROOT/etc/rsyslog.conf
 # perl -pi -e "s/^authpriv/\\#authpriv/" $CHROOT/etc/rsyslog.conf
