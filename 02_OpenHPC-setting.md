@@ -23,6 +23,7 @@ gnu8-compilers-ohpc intel-mpi-devel-ohpc openmpi3-gnu8-ohpc openmpi3-intel-ohpc 
 ### Change vnfs.conf for copy locale folder to compute node by add "#"
 ```
 # vi /etc/warewulf/vnfs.conf
+
 #hybridize += /usr/share/locale
 #hybridize += /usr/lib/locale
 #hybridize += /usr/lib64/locale
@@ -31,6 +32,7 @@ gnu8-compilers-ohpc intel-mpi-devel-ohpc openmpi3-gnu8-ohpc openmpi3-intel-ohpc 
 ### Share library to compute nodes
 ```
 # vi $CHROOT/etc/fstab
+
 192.168.1.254:/usr/lib /usr/lib nfs defaults 0 0
 192.168.1.254:/usr/lib64 /usr/lib64 nfs defaults 0 0
 192.168.1.254:/etc/slurm /etc/slurm nfs defaults 0 0
