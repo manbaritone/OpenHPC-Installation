@@ -205,7 +205,7 @@ PurgeTXNAfter=12months
 PurgeUsageAfter=12months
 ```
 
-### Setup mysql
+### Setup MySQL
 ```
 # mysql -p
 mysql> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'slurm@1234' with grant option;
