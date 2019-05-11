@@ -105,7 +105,7 @@ master-cpu: sharing=default_shared
 master-cpu: Priority=100
 ```
 
-***vnodefile-gpu***
+**vnodefile-gpu**
 ```
 $configversion 2
 master-gpu0: Mom=master
