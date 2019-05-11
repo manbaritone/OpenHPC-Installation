@@ -2,20 +2,20 @@ Credit: Atip Peethong
 
 ### Install OpenHPC Repository
 ```
-yum -y install http://build.openhpc.community/OpenHPC:/1.3/CentOS_7/x86_64/ohpc-release-1.3-1.el7.x86_64.rpm
+# yum -y install http://build.openhpc.community/OpenHPC:/1.3/CentOS_7/x86_64/ohpc-release-1.3-1.el7.x86_64.rpm
 ```
 
 ### Install basic package for OpenHPC
 ```
-yum -y install ohpc-base
-yum -y install ohpc-warewulf
+# yum -y install ohpc-base
+# yum -y install ohpc-warewulf
 ```
 
 ### Setup Time Server by point to KU server
 ```
-systemctl enable ntpd.service
-echo "server ntp.ku.ac.th" >> /etc/ntp.conf
-systemctl restart ntpd
+# systemctl enable ntpd.service
+# echo "server ntp.ku.ac.th" >> /etc/ntp.conf
+# systemctl restart ntpd
 ```
 
 ### Install PBSPro
@@ -25,12 +25,12 @@ yum -y install pbspro-server-ohpc
 
 ### Detemine enp0s3 for internal interface
 ```
-perl -pi -e "s/device = eth1/device = enp0s3/" /etc/warewulf/provision.conf
+# perl -pi -e "s/device = eth1/device = enp0s3/" /etc/warewulf/provision.conf
 ```
 
 ### Enable tftp service
 ```
-perl -pi -e "s/^\s+disable\s+= yes/ disable = no/" /etc/xinetd.d/tftp
+# perl -pi -e "s/^\s+disable\s+= yes/ disable = no/" /etc/xinetd.d/tftp
 ```
 
 ### Determine ip for enp0s3
