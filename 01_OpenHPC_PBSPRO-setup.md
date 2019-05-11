@@ -26,7 +26,8 @@ Credit: Atip Peethong
 
 ### Restart ans enable services
 `systemctl restart xinetd`\
-`systemctl enable mariadb.service # systemctl restart mariadb`\
+`systemctl enable mariadb.service`\
+`systemctl restart mariadb`\
 `systemctl enable httpd.service`\
 `systemctl restart httpd`\
 `systemctl enable dhcpd.service`
