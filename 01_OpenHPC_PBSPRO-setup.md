@@ -4,8 +4,10 @@ Credit: Atip Peethong
 `yum -y install http://build.openhpc.community/OpenHPC:/1.3/CentOS_7/x86_64/ohpc-release-1.3-1.el7.x86_64.rpm`
 
 ### Install basic package for OpenHPC
-`yum -y install ohpc-base`\
-`yum -y install ohpc-warewulf`
+```
+yum -y install ohpc-base
+yum -y install ohpc-warewulf
+```
 
 ### Setup Time Server by point to KU server
 `systemctl enable ntpd.service`\
