@@ -256,7 +256,9 @@ We have 2 compute nodes
 ```
 
 ### Sync all file to compute node
+```
 # wwsh file resync
+```
 
 ### Compute node installation (by booting from network with MAC Address)
 Open compute node and waiting for finish and you can check by:
