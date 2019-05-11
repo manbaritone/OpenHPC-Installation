@@ -1,4 +1,6 @@
-Add holiday times to /var/spool/pbs/sched_priv/holidays
+### Add holiday times to /var/spool/pbs/sched_priv/holidays
+```
+# vi /var/spool/pbs/sched_priv/holidays
 
 *
 YEAR  2019
@@ -53,38 +55,46 @@ YEAR  2019
   364           Dec 30          Year-End Holiday
 * Dec 31 
   365           Dec 31          Year-End Holiday
+```
 
-
-Add GPU resource
+### Add GPU resource
+```
 # qmgr
 create resource ngpus type=long, flag=nh
 create resource gpu_id type=string, flag=h
 exit
+```
 
-Edit <sched_priv directory>/sched_config to add ngpus to the list of scheduling resources:
+### Edit <sched_priv directory>/sched_config to add ngpus to the list of scheduling resources:
+```
 # vi /var/spool/pbs/sched_priv/sched_config 
 resources: "ncpus, mem, arch, host, vnode, aoe, eoe, ngpus, gpu_id"
+```
 
+```
 # service pbs restart 
+```
 
-
-Add vnode for cpu and gpu execution
-
+### Add vnode for cpu and gpu execution
+```
 # qmgr
 set node master resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
 set node c1 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
 set node c2 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0 
 set node c3 resources_available.ncpus=0, resources_available.mem=0, resources_available.ngpus=0
 exit
+```
 
-create vnode file for each vnode and scp to each host and ssh to each host
+### Create vnode file for each vnode and scp to each host and ssh to each host
+```
 # ssh host
 # pbs_mom -s insert vnodefile vnodefile
 # service pbs restart
 # exit
+```
 
-vnodefile-cpu
-
+**vnodefile-cpu**
+```
 $configversion 2
 master-cpu: Mom=master
 master-cpu: resources_available.ncpus=8
@@ -93,8 +103,10 @@ master-cpu: resources_available.host=master
 master-cpu: resources_available.vnode=master-cpu
 master-cpu: sharing=default_shared
 master-cpu: Priority=100
+```
 
-vnodefile-gpu
+***vnodefile-gpu***
+```
 $configversion 2
 master-gpu0: Mom=master
 master-gpu0: resources_available.ncpus=1
@@ -104,18 +116,22 @@ master-gpu0: resources_available.vnode=master-gpu0
 master-gpu0: resources_available.gpu_id=gpu0
 master-gpu0: sharing=default_excl
 master-gpu0: Priority=10
+```
 
+```
 # service pbs restart 
+```
 
-
-Add compute node to PBS pro 
+### Add compute node to PBS pro 
+```
 # qmgr
 create node master
 exit
 # service pbs restart
+```
 
-
-Add cpu queue
+### Add cpu queue
+```
 # qmgr
 create queue qcpu 
 set queue qcpu queue_type = Execution 
@@ -127,9 +143,10 @@ set queue qcpu enabled = True
 set queue qcpu started = True
 exit
 # service pbs restart
+```
 
-
-Add gpu queue
+### Add gpu queue
+```
 # qmgr
 create queue qgpu
 set queue qgpu queue_type = Execution 
@@ -141,4 +158,4 @@ set queue qgpu enabled = True
 set queue qgpu started = True
 exit
 # service pbs restart
-
+```
