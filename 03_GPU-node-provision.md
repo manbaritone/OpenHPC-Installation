@@ -1,37 +1,56 @@
 Credit: https://github.com/dasandata/Open_HPC/blob/master/Provisioning/GPU%20Node%20Provisioning%20of%20OpenHPC%20Cluster.md 
 
-Create and source ohpc_variable.sh
+### Create and source ohpc_variable.sh
+```
 # vi ohpc_variable.sh
-export CHROOT=/opt/ohpc/admin/images/centos7.5
 
-Install CUDA repository on master node
+export CHROOT=/opt/ohpc/admin/images/centos7.5
+```
+
+### Install CUDA repository on master node
+```
 # curl -L -o cuda-repo-rhel7-10.0.130-1.x86_64.rpm http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm
 # yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm
+```
 
-Copy epel-nvidia.repo to compute node
+### Copy epel-nvidia.repo to compute node
+```
 # yum -y install --installroot ${CHROOT} cuda-repo-rhel7-10.0.130-1.x86_64.rpm
+```
 
-Install libGLU.so libX11.so libXi.so libXmu.so to master node
+### Install libGLU.so libX11.so libXi.so libXmu.so to master node
+```
 # yum -y install libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* openmotif*
+```
 
-Install libGLU.so libX11.so libXi.so libXmu.so to compute node
+### Install libGLU.so libX11.so libXi.so libXmu.so to compute node
+```
 # yum -y install --installroot=$CHROOT libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* openmotif*
+```
 
-Install nvidia-driver and cuda toolkit to master node 
+### Install nvidia-driver and cuda toolkit to master node 
+```
 # yum -y install nvidia-driver nvidia-settings cuda nvidia-driver-cuda
+```
 
-Install nvidia-driver and cuda toolkit to compute node 
+### Install nvidia-driver and cuda toolkit to compute node 
+```
 # yum -y install --installroot=$CHROOT nvidia-driver nvidia-settings cuda nvidia-driver-cuda
+```
 
-Install cuda-cudnn
+### Install cuda-cudnn
+
 Download cuda-cudnn rpm files and use yum install *.rpm to install files
 
 Nvidia device enable on boot (/dev/nvidia*)
 
+```
 # chroot $CHROOT
+```
+
+```
 # vi /etc/init.d/nvidia
 
---------------------------------------------------------------------
 #!/bin/bash
 #
 # nvidia    Set up NVIDIA GPU Compute Accelerators
@@ -255,13 +274,16 @@ case "$1" in
         RETVAL=2
 esac
 exit $RETVAL
---------------------------------------------------------------------
+```
 
+```
 # chmod +x /etc/init.d/nvidia
 # exit
+```
 
+```
 # vi /lib/systemd/system/nvidia-gpu.service
-----------------------------------
+
 [Unit]
 Description=NVIDIA GPU Initialization
 After=remote-fs.target
@@ -274,19 +296,26 @@ ExecStop=/etc/init.d/nvidia stop
 
 [Install]
 WantedBy=multi-user.target
-----------------------------------
+```
+
+```
 # chroot $CHROOT
 # systemctl enable nvidia-gpu.service
+```
 
-
-Update to Node nvfs image
+### Update to Node nvfs image
+```
 # wwvnfs --chroot ${CHROOT}
 # wwsh vnfs list
+```
 
-Apply update imgae to nodes (rebooting)
+### Apply update imgae to nodes (rebooting)
+```
 # ssh node1 reboot
+```
 
-Download and install cuda-8.0, cuda-9.0, cuda-10.0 toolkits
+### Download and install cuda-8.0, cuda-9.0, cuda-10.0 toolkits
+```
 # cd /root
 # wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run
 # mv cuda_8.0.61_375.26_linux-run cuda_8.0.61_375.26_linux.run
@@ -297,23 +326,30 @@ Download and install cuda-8.0, cuda-9.0, cuda-10.0 toolkits
 # ./cuda_8.0.61_375.26_linux.run --silent --toolkit
 # ./cuda_9.0.176_384.81_linux.run --silent --toolkit
 # ./cuda_10.0.130_410.48.linux.run --silent --toolkit
+```
 
-Add Multiple Cuda Module for GPU Node
+### Add Multiple Cuda Module for GPU Node
+```
 # cd /root
 # git clone https://github.com/dasandata/open_hpc
 # cd /root/open_hpc
 # git pull
 # mkdir -p /opt/ohpc/pub/modulefiles/cuda
 # cd
+```
 
-Add CUDA Module File by each version
+### Add CUDA Module File by each version
+```
 # export GIT_CLONE_DIR=/root/open_hpc
 # export MODULES_DIR=/opt/ohpc/pub/modulefiles
 # for CUDA_VERSION in 8.0 9.0 10.0 ; do
 cp -a ${GIT_CLONE_DIR}/Module_Template/cuda.lua ${MODULES_DIR}/cuda/${CUDA_VERSION}.lua ;
 sed -i "s/{version}/${CUDA_VERSION}/" ${MODULES_DIR}/cuda/${CUDA_VERSION}.lua ;
 done
+```
 
-Refresh modules
+### Refresh modules
+```
 # rm -rf  ~/.lmod.d/.cache
 # module av
+```
