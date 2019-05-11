@@ -1,0 +1,17 @@
+Restart Gangila
+
+pdsh -w c[1-2] systemctl restart gmond
+pdsh -w c[1-2] systemctl restart gmetad
+systemctl restart gmond
+systemctl restart gmetad
+
+Restart Slurm
+
+pdsh -w c[1-2] systemctl restart slurmd
+systemctl restart slurmd
+systemctl restart slurmdbd
+systemctl restart slurmctld
+
+Check Slurm status
+
+scontrol show node
