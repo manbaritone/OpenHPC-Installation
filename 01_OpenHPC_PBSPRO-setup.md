@@ -50,7 +50,7 @@ master  192.168.1.254
 `yum -y --installroot=$CHROOT install pbspro-execution-ohpc`\
 `perl -pi -e "s/PBS_SERVER=\S+/PBS_SERVER=master/" $CHROOT/etc/pbs.conf`\
 `echo "PBS_LEAF_NAME=master" >> /etc/pbs.conf`\
-`perl -pi -e "s/\$clienthost \S+/\$clienthost master/" $CHROOT/var/spool/pbs/mom_priv/config`\`
+`perl -pi -e "s/\$clienthost \S+/\$clienthost master/" $CHROOT/var/spool/pbs/mom_priv/config`\
 `chroot $CHROOT opt/pbs/libexec/pbs_habitat`\
 `echo "\$usecp *:/home /home" >> $CHROOT/var/spool/pbs/mom_priv/config`\
 `chroot $CHROOT systemctl enable pbs`
@@ -115,7 +115,8 @@ master  192.168.1.254
 `chroot $CHROOT systemctl enable gmond`\
 `systemctl try-restart httpd`
 
-### Install Clustershell (by adm: master ansd compute:${compute_prefix}[1-${num_computes}] by compute_prefix = c and num_computes =2)
+### Install Clustershell 
+### (by adm: master ansd compute:${compute_prefix}[1-${num_computes}] by compute_prefix = c and num_computes =2)
 `yum -y install clustershell-ohpc`\
 `cd /etc/clustershell/groups.d`\
 `mv local.cfg local.cfg.orig`\
@@ -135,12 +136,13 @@ master  192.168.1.254
 `echo "drivers += overlay" >> $WW_CONF`
 
 ### Setup bootstrap image
-wwbootstrap `uname -r`
+`wwbootstrap `uname -r``
 
 ### Create Virtual Node File System (VNFS) image
 `wwvnfs --chroot $CHROOT`
 
-### Determine compute node by MAC Address (by GATEWAYDEV=enp0s8 is Public interface // using in internal lan group)
+### Determine compute node by MAC Address
+### (by GATEWAYDEV=enp0s8 is Public interface // using in internal lan group)
 `echo "GATEWAYDEV=enp0s8" > /tmp/network.$$`\
 `wwsh -y file import /tmp/network.$$ --name network`\
 `wwsh -y file set network --path /etc/sysconfig/network --mode=0644 --uid=0`\
@@ -160,7 +162,7 @@ We have 2 compute nodes
 `systemctl restart gmond`\
 `systemctl restart gmetad`\
 `systemctl restart dhcpd`\
-`wwsh pxe update1
+`wwsh pxe update1`
 
 ### Determine resource for pbs system
 `systemctl enable pbs`\
