@@ -29,5 +29,5 @@
 ### Add part to permanent mount 
 ```
 # vi /etc/fstab
-/dev/sdb1 /data1 ext4 defaults 0 0
+/dev/sdb1 /data1 auto nosuid,nodev,nofail 0 0
 ```
