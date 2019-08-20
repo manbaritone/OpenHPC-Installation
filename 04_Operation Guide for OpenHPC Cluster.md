@@ -4,6 +4,7 @@ Credit: https://github.com/dasandata/Open_HPC/blob/master/Opertation%20Guide%20f
 ```
 # wwuseradd testuser
 # passwd testuser
+# chage -d 0 testuser
 # wwsh file resync group passwd shadow
 ```
 
