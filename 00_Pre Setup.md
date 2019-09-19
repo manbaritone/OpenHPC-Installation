@@ -24,7 +24,7 @@ enp0s3: private network 192.168.1.253 MAC 08:00:27:99:b3:4f
 ```
 
 ```
-hostnamectl set-hostnname master
+hostnamectl set-hostname master
 ```
 
 ### Disable firewall
