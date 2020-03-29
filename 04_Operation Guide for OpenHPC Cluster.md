@@ -5,7 +5,11 @@ Credit: https://github.com/dasandata/Open_HPC/blob/master/Opertation%20Guide%20f
 # wwuseradd testuser
 # passwd testuser
 # chage -d 0 testuser
-# wwsh file resync group passwd shadow
+# wwsh -y file import /etc/passwd
+# wwsh -y file import /etc/group
+# wwsh -y file import /etc/shadow
+# wwsh -y provision set "*" --fileadd passwd,group,shadow
+# wwsh file sync
 ```
 
 ### 2. Delete user
