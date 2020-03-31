@@ -21,7 +21,7 @@
 ### Type the following commands to mount /dev/sdb1
 ```
 # mkdir /data1
-# chown 777 /data1
+# chmod 777 /data1
 # mount /dev/sdb1 /data1
 # df -h
 ```
