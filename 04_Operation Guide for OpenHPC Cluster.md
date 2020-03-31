@@ -99,9 +99,6 @@ Credit: https://github.com/dasandata/Open_HPC/blob/master/Opertation%20Guide%20f
 # systemctl restart gmetad 
 # systemctl restart dhcpd 
 # wwsh pxe update
-# qmgr
-create node c2
-exit
 ```
 
 ```
