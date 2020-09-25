@@ -123,13 +123,22 @@ PropagateResourceLimitsExcept=MEMLOCK
 #Epilog=/etc/slurm/slurm.epilog.clean
 #
 GresTypes=gpu
-NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 Procs=12 Sockets=1 CoresPerSocket=12 ThreadsPerCore=1 State=UNKNOWN RealMemory=55000
-NodeName=c2 NodeAddr=c2 NodeHostName=c2 Gres=gpu:1 Procs=12 Sockets=1 CoresPerSocket=12 ThreadsPerCore=1 State=UNKNOWN RealMemory=25000
-NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 Procs=8 Sockets=1 CoresPerSocket=8 ThreadsPerCore=1 State=UNKNOWN RealMemory=55000
-PartitionName=qcpu Nodes=c[1-2],master Shared=NO Default=YES State=UP
-PartitionName=qgpu Nodes=master,c[1-2] Shared=NO Default=NO MaxCPUsPerNode=2 State=UP
-DebugFlags=NO_CONF_HASH
-ReturnToService=2
+
+#NODES
+NodeName=master NodeAddr=master NodeHostName=master Gres=gpu:2 CPUs=8 CoresPerSocket=8 ThreadsPerCore=1 RealMemory=64000 State=UNKNOWN
+NodeName=c1 NodeAddr=c1 NodeHostName=c1 Gres=gpu:2 CPUs=12 CoresPerSocket=12 ThreadsPerCore=1 RealMemory=64000 State=UNKNOWN
+NodeName=c2 NodeAddr=c2 NodeHostName=c2 CPUs=16 CoresPerSocket=16 ThreadsPerCore=1 RealMemory=16000 State=UNKNOWN
+NodeName=c3 NodeAddr=c3 NodeHostName=c3 Gres=gpu:2 CPUs=12 CoresPerSocket=12 ThreadsPerCore=1 RealMemory=64000 State=UNKNOWN
+NodeName=c4 NodeAddr=c4 NodeHostName=c4 Gres=gpu:1 CPUs=16 CoresPerSocket=16 ThreadsPerCore=1 RealMemory=32000 State=UNKNOWN
+NodeName=c5 NodeAddr=c5 NodeHostName=c5 CPUs=16 CoresPerSocket=16 ThreadsPerCore=1 RealMemory=16000 State=UNKNOWN
+
+#PARTITIONS
+PartitionName=qcpu Nodes=c[1-5],master Default=YES State=UP MaxTime=120:00:00 Shared=NO
+PartitionName=qgpu_gtx1070ti Nodes=master,c1 State=UP MaxTime=72:00:00 Shared=NO
+PartitionName=qgpu_rtx2070 Nodes=c3 State=UP MaxTime=72:00:00 Shared=NO
+PartitionName=qgpu_rtx2080 Nodes=c4 State=UP MaxTime=72:00:00 Shared=NO
+
+ReturnToService=0
 ```
 
 ### Create file gres.conf
