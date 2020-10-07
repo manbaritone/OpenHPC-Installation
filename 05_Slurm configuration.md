@@ -234,3 +234,33 @@ systemctl start slurmdbd
 systemctl restart slurmctld
 sacctmgr add cluster galaxy.cluster
 ```
+
+
+### Firewalld for Slurm daemons
+SlurmctldPort=6817
+SlurmdPort=6818
+SchedulerPort=7321
+```
+yum install firewalld firewall-config
+systemctl start firewalld
+systemctl enable firewalld
+firewall-cmd --permanent --zone=public --add-port=6817/tcp
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 0 -s 192.168.0.0/16 -j ACCEPT
+firewall-cmd --permanent --zone=public --add-port=6819/tcp
+firewall-cmd --reload
+```
+
+### MySQL configuration
+Create a new file /etc/my.cnf.d/innodb.cnf containing:
+```
+[mysqld]
+innodb_buffer_pool_size=1024M
+innodb_log_file_size=64M
+innodb_lock_wait_timeout=900
+```
+To implement this change you have to shut down the database and move/remove logfiles:
+```
+systemctl stop mariadb
+mv /var/lib/mysql/ib_logfile? /tmp/
+systemctl start mariadb
+```
