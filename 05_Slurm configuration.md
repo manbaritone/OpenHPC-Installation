@@ -172,7 +172,13 @@ scontrol update NodeName=c[1-2] State=RESUME
 # See the slurmdbd.conf man page for more information.
 #
 # Archive info
+ArchiveEvents=yes
 ArchiveJobs=yes
+ArchiveResvs=yes
+ArchiveSteps=no
+ArchiveSuspend=no
+ArchiveTXN=no
+ArchiveUsage=no
 #ArchiveDir="/tmp"
 ArchiveSteps=yes
 #ArchiveScript=
@@ -205,13 +211,14 @@ StoragePass=slurm@1234
 StorageUser=slurm
 StorageLoc=slurm_acct_db
 
-PurgeEventAfter=12months
-PurgeJobAfter=12months
-PurgeResvAfter=2months
-PurgeStepAfter=2months
+PurgeEventAfter=12month
+PurgeJobAfter=12month
+PurgeResvAfter=2month
+PurgeStepAfter=2month
 PurgeSuspendAfter=1month
-PurgeTXNAfter=12months
-PurgeUsageAfter=12months
+PurgeTXNAfter=12month
+PurgeUsageAfter=12month
+MaxQueryTimeRange=60-0
 ```
 
 ### Setup MySQL
