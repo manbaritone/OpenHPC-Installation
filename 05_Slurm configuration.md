@@ -133,10 +133,10 @@ NodeName=c4 NodeAddr=c4 NodeHostName=c4 Gres=gpu:1 CPUs=16 CoresPerSocket=16 Thr
 NodeName=c5 NodeAddr=c5 NodeHostName=c5 CPUs=16 CoresPerSocket=16 ThreadsPerCore=1 RealMemory=16000 State=UNKNOWN
 
 #PARTITIONS
-PartitionName=qcpu Nodes=c[1-5],master Default=YES State=UP MaxTime=120:00:00 Shared=NO
-PartitionName=qgpu_gtx1070ti Nodes=master,c1 State=UP MaxTime=72:00:00 Shared=NO
-PartitionName=qgpu_rtx2070 Nodes=c3 State=UP MaxTime=72:00:00 Shared=NO
-PartitionName=qgpu_rtx2080 Nodes=c4 State=UP MaxTime=72:00:00 Shared=NO
+PartitionName=qcpu Nodes=c[1-5],master Default=YES State=UP MaxTime=120:00:00 DefaultTime=0:30:0 DefMemPerCPU=512 Shared=NO
+PartitionName=qgpu_gtx1070ti Nodes=master,c1 State=UP MaxTime=72:00:00 DefaultTime=0:30:0 DefMemPerCPU=512 Shared=NO
+PartitionName=qgpu_rtx2070 Nodes=c3 State=UP MaxTime=72:00:00 DefaultTime=0:30:0 DefMemPerCPU=512 Shared=NO
+PartitionName=qgpu_rtx2080 Nodes=c4 State=UP MaxTime=72:00:00 DefaultTime=0:30:0 DefMemPerCPU=512 Shared=NO
 
 ReturnToService=0
 ```
