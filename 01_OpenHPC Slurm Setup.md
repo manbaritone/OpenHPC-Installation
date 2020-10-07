@@ -295,3 +295,18 @@ Open compute node and waiting for finish and you can check by:
 ```
 # scontrol show nodes
 ```
+
+### Firewalld for Slurm daemons
+```
+SlurmctldPort=6817
+SlurmdPort=6818
+SchedulerPort=7321
+
+yum install firewalld firewall-config
+systemctl start firewalld
+systemctl enable firewalld
+firewall-cmd --permanent --zone=public --add-port=6817/tcp
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 0 -s 192.168.0.0/16 -j ACCEPT
+firewall-cmd --permanent --zone=public --add-port=6819/tcp
+firewall-cmd --reload
+```
