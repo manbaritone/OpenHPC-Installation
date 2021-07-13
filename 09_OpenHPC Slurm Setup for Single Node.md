@@ -252,7 +252,7 @@ sudo yum upgrade intel-basekit
 #### Install OHPC basic additional packages
 You can check additional packages from http://repos.openhpc.community/OpenHPC/2/CentOS_8/x86_64/
 ```
-# yum install -y EasyBuild-ohpc autoconf-ohpc automake-ohpc cmake-ohpc gnu9-complier-ohpc hwloc-ohpc libtool-ohpc python3-Cython-ohpc singularity-ohpc
+# yum install -y EasyBuild-ohpc autoconf-ohpc automake-ohpc cmake-ohpc gnu9-compilers-ohpc hwloc-ohpc libtool-ohpc python3-Cython-ohpc singularity-ohpc
 ```
 <br>
 
@@ -266,5 +266,5 @@ You can check additional packages from http://repos.openhpc.community/OpenHPC/2/
 #### Install OHPC Intel basic additional packages
 You can check additional packages from http://repos.openhpc.community/OpenHPC/2/CentOS_8/x86_64/
 ```
-# yum install -y ohpc-intel* intel-compliers-devel-ohpc intel-mpi-devel-ohpc adios-intel* boost-intel* hdf5-intel* mpich-ofi-intel* mpich-ucx-intel* mvapich2-intel* netcdf-intel* openmpi4-intel* pdtoolkit-intel* phdf5-intel* pnetcdf-intel* python3-mpi4py-intel* sionlib-intel* 
+# yum install -y ohpc-intel* intel-compilers-devel-ohpc intel-mpi-devel-ohpc adios-intel* boost-intel* hdf5-intel* mpich-ofi-intel* mpich-ucx-intel* mvapich2-intel* netcdf-intel* openmpi4-intel* pdtoolkit-intel* phdf5-intel* pnetcdf-intel* python3-mpi4py-intel* sionlib-intel* 
 ```
