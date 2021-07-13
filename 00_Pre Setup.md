@@ -1,9 +1,9 @@
-Credit: Atip Peethong
-
-<br>
 Please check MAC address for public and internal cards
 
+<br>
+
 ## Information
+<br>
 
 **Master**\
 Hostname: master\
