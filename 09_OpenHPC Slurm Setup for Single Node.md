@@ -85,7 +85,7 @@ SELINUX=disabled
 ```
 
 ### Update basic slurm configuration by vim
-Please adjust configuration based on your computer. BTW, you can adjust by cinfiguration tool at https://slurm.schedmd.com/configurator.html
+Please adjust configuration based on your computer. BTW, you can adjust by using configuration tool at https://slurm.schedmd.com/configurator.html
 ```
 # vi /etc/slurm/slurm.conf
 
