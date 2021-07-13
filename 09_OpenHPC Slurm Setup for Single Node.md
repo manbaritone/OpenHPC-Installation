@@ -64,7 +64,7 @@ SELINUX=disabled
 # cp /etc/slurm/slurm.conf.ohpc /etc/slurm/slurm.conf
 ```
 
-### Restart ans enable services
+### Restart and enable services
 ```
 # systemctl enable mariadb.service 
 # systemctl restart mariadb
