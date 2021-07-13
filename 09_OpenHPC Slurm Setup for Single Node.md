@@ -6,7 +6,7 @@ enp0s8: public network 10.204.100.10 (depend on your ip address)
 
 <br>
 
-### Add master host
+### Add host
 ```
 # vi /etc/hosts
 
@@ -30,7 +30,7 @@ hostnamectl set-hostname sirius
 SELINUX=disabled
 ```
 
-### Reboot master node 
+### Reboot node 
 ```
 # reboot
 ```
