@@ -60,7 +60,6 @@ SELINUX=disabled
 ### Install Slurm
 ```
 # yum -y install ohpc-slurm-server
-# yum -y install ohpc-slurm-client
 # cp /etc/slurm/slurm.conf.ohpc /etc/slurm/slurm.conf
 ```
 
@@ -71,6 +70,11 @@ SELINUX=disabled
 # systemctl enable httpd.service
 # systemctl restart httpd
 # systemctl enable dhcpd.service
+```
+
+### Install OpenHPC for compute node
+```
+# yum -y install ohpc-slurm-client
 ```
 
 ### Install modules user enviroment for compute node and master node
