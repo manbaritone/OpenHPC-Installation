@@ -53,13 +53,13 @@ SELINUX=disabled
 ### Install basic package for OpenHPC
 ```
 # yum -y install ohpc-base
-# yum -y install ohpc-base-compute
 # yum -y install ohpc-warewulf
 ```
 
 ### Install Slurm
 ```
 # yum -y install ohpc-slurm-server
+# yum -y install ohpc-slurm-client
 # cp /etc/slurm/slurm.conf.ohpc /etc/slurm/slurm.conf
 ```
 
@@ -74,7 +74,7 @@ SELINUX=disabled
 
 ### Install OpenHPC for compute node
 ```
-# yum -y install ohpc-slurm-client
+# yum -y install ohpc-base-compute
 ```
 
 ### Install modules user enviroment for compute node and master node
