@@ -104,4 +104,5 @@ $EXTENDED_SCHEMA = 1;
 # ldapadd -x -W -D "cn=ldapadm,dc=galaxy,dc=local" -f /root/groups.ldif
 # ldapsearch -x cn=ldpuser1 -b dc=galaxy,dc=local
 # ldapdelete -v -D "cn=ldapadm,dc=galaxy,dc=local" -W "uid=xxxxxxxx,ou=People,dc=galaxy,dc=local"
+# ldapdelete -v -D "cn=ldapadm,dc=galaxy,dc=local" -W "cn=xxxxxxxx,ou=Group,dc=galaxy,dc=local"
 ```
