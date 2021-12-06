@@ -7,13 +7,15 @@
 ```
 # yum -y install ohpc-base
 # yum -y install ohpc-warewulf
+# yum -y install chrony
 ```
 
-### Setup Time Server by point to KU server
+### Setup Time Server
 ```
 # systemctl enable ntpd.service
-# echo "server ntp.ku.ac.th" >> /etc/ntp.conf 
-# systemctl restart ntpd
+# systemctl enable chronyd
+# echo "allow all" >> /etc/chrony.conf
+# systemctl restart chronyd
 ```
 
 ### Install Slurm
@@ -78,6 +80,7 @@ master  192.168.1.254
 ### Install NTP for compute node
 ```
 # yum -y --installroot=$CHROOT install ntp
+# yum -y --installroot=$CHROOT install chrony
 ```
 
 ### Install kernel for compute node
@@ -117,7 +120,9 @@ master  192.168.1.254
 ### Determine kernel setting for compute node
 ```
 # chroot $CHROOT systemctl enable ntpd
-# echo "server 192.168.1.254" >> $CHROOT/etc/ntp.conf
+# chroot $CHROOT systemctl enable chrony
+# echo "server 192.168.1.254 iburst" >> $CHROOT/etc/ntp.conf
+# echo "server 192.168.1.254 iburst" >> $CHROOT/etc/chrony.conf
 ```
 
 ### Update basic slurm configuration
