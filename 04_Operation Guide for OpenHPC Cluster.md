@@ -5,10 +5,6 @@ Credit: https://github.com/dasandata/Open_HPC/blob/master/Opertation%20Guide%20f
 # wwuseradd testuser
 # passwd testuser
 # chage -d 0 testuser
-# wwsh -y file import /etc/passwd
-# wwsh -y file import /etc/group
-# wwsh -y file import /etc/shadow
-# wwsh -y provision set "*" --fileadd dynamic_hosts,passwd,group,shadow,slurm.conf,munge.key,network
 # wwsh file resync
 # pdsh -w c[1-5] /warewulf/bin/wwgetfiles
 ```
