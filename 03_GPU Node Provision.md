@@ -39,9 +39,14 @@ export CHROOT=/opt/ohpc/admin/images/centos7.5
 ```
 
 ### Install cuda-cudnn
-
-Download cuda-cudnn rpm files and use yum install *.rpm to install files
-
+First register here: https://developer.nvidia.com/developer-program/signup and Download cuda-cudnn tar.xz files from https://developer.nvidia.com/rdp/cudnn-archive
+```
+# tar -xvf cudnn-linux-x86_64-*****.tar.xz
+# mv cudnn-linux-x86_64-***** cuda
+# cp -P cuda/include/cudnn.h /usr/local/cuda-11.8/include
+# cp -P cuda/lib/libcudnn* /usr/local/cuda-11.8/lib64/
+# chmod a+r /usr/local/cuda-11.8/lib64/libcudnn*
+```
 Nvidia device enable on boot (/dev/nvidia*)
 
 ```
