@@ -152,7 +152,7 @@ SlurmctldHost=master
 # systemctl enable slurmctld
 # systemctl start munge
 # systemctl start slurmctld
-# chroot $CHROOT systemctl enable slurm
+# chroot $CHROOT systemctl enable slurmd
 ```
 
 ### Determine memlock values
