@@ -66,7 +66,7 @@ make install -j16
 
 #### Test for 2 MPI threads
 ```
-sinteractive -p gpu-cluster --gpus 1 --mem=32GB --cpus-per-gpu=2 --time=1-0:0:0
+sinteractive -p gpu-cluster --gpus 1 --mem=32GB --ntasks=2 --time=1-0:0:0
 cd /ist/users/bunditb/bunditb_bak2/apps/amber24
 source amber.sh
 export DO_PARALLEL='mpirun -np 2'
@@ -75,7 +75,7 @@ make test.parallel
 
 #### Test for 4 MPI threads
 ```
-sinteractive -p gpu-cluster --gpus 1 --mem=32GB --cpus-per-gpu=4 --time=1-0:0:0
+sinteractive -p gpu-cluster --gpus 1 --mem=32GB --ntasks=4 --time=1-0:0:0
 cd /ist/users/bunditb/bunditb_bak2/apps/amber24
 source amber.sh
 export DO_PARALLEL='mpirun -np 4'
