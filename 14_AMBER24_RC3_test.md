@@ -85,7 +85,7 @@ make test.parallel
 
 #### Complie and install
 ```
-cd amber22_src
+cd amber24_src
 cd build
 make clean
 cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DMPI=TRUE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE
