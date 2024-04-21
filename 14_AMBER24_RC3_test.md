@@ -1,6 +1,7 @@
 ## AMBER24_RC3_test
 
-System: CentOS Linux release 7.6.1810 with CMake 3.20.1, CUDA 11.1.1, GCC 10.3.0, and OpenMPI 4.1.1 operated by Lmod
+OS System: CentOS Linux release 7.6.1810 with CMake 3.20.1, CUDA 11.1.1, GCC 10.3.0, and OpenMPI 4.1.1 operated by Lmod
+Computer System: 4 GPUS NVIDIA V100 (32 GB with NVLink)
 
 ### Load modules
 ```
