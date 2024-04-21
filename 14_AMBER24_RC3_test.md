@@ -4,10 +4,9 @@ System: CentOS Linux release 7.6.1810 with CMake 3.20.1, CUDA 11.1.1, GCC 10.3.0
 
 ### Load modules
 ```
-ml cmake
-ml openmpi4
-ml cuda/11.8
-ml cudnn/11.8-8.9.2
+ml CMake/3.20.1-GCCcore-10.3.0
+ml OpenMPI/4.1.1-GCC-10.3.0
+ml CUDAcore/11.1.1
 ```
 
 #### Extract AMBER
