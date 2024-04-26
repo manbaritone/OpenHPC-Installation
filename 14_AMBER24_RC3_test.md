@@ -22,7 +22,7 @@ tar xvfj Amber24_rc3.tar.bz2
 ```
 cd amber24_src
 cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=FALSE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE
+cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=FALSE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
 make install -j16
 ```
 
@@ -41,7 +41,7 @@ make test.serial
 cd amber24_src
 cd build
 make clean
-cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/ist/apps/modules/software/CUDAcore/11.1.1 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE
+cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/ist/apps/modules/software/CUDAcore/11.1.1 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
 make install -j16
 ```
 
@@ -60,7 +60,7 @@ make test.cuda.serial
 cd amber24_src
 cd build
 make clean
-cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DCUDA=FALSE -DMPI=TRUE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE
+cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DCUDA=FALSE -DMPI=TRUE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
 make install -j16
 ```
 
@@ -89,7 +89,7 @@ make test.parallel
 cd amber24_src
 cd build
 make clean
-cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DMPI=TRUE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE
+cmake .. -DCMAKE_INSTALL_PREFIX=/ist/users/bunditb/bunditb_bak2/apps/amber24 -DCOMPILER=GNU -DMPI=TRUE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
 make install -j16
 ```
 
