@@ -28,8 +28,8 @@ Other OS, please visit: https://ambermd.org/Installation.php
 
 #### Extract AMBER
 ```
-tar xvfj AmberTools24_rc4.tar.bz2
-tar xvfj Amber24_rc4.tar.bz2 
+tar xvfj AmberTools24.tar.bz2
+tar xvfj Amber24.tar.bz2 
 ```
 
 ### Compile Serial CPU
