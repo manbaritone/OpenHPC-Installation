@@ -9,12 +9,13 @@ Ref: https://ambermd.org/
 
 ### Pre-installation
 
-System: CentOS Linux release 7.6.1810 with CMake 3.27.6, CUDA 11.8, GNU11 v11.2.1, and OpenMPI4 v4.1.6 operated by Lmod
+OS System: CentOS Linux release 7.6.1810 with CMake 3.27.6, CUDA 11.8, GCC 7.3, and OpenMPI 4.1.6 operated by Lmod 
+Computer System: 2 x NVIDIA GeForce GTX 1070 Ti 8GB with Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz
 
 Refs: \
-https://ambermd.org/doc12/Amber22.pdf
+https://ambermd.org/doc12/Amber24.pdf
 
-#### Install Dependencies
+#### Install Dependencies (For CentOS 7)
 ```
 yum -y install tcsh make \
 			   gcc gcc-gfortran gcc-c++ \
@@ -23,131 +24,53 @@ yum -y install tcsh make \
 			   perl perl-ExtUtils-MakeMaker util-linux wget \
 			   bzip2 bzip2-devel zlib-devel tar
 ```
+Other OS, please visit: https://ambermd.org/Installation.php
 
-#### Extract amber
+#### Extract AMBER
 ```
-tar xvfj AmberTools23.tar.bz2
-tar xvfj Amber22.tar.bz2
+tar xvfj AmberTools24_rc4.tar.bz2
+tar xvfj Amber24_rc4.tar.bz2 
 ```
-
-#### Upgrade and update Amber
-```
-cd amber22_src
-./update_amber --update
-```
-if have any error due to "https", please modify the code in 4 py files (downloader.py, main.py, patch.py, and test_updateutils.py) in amber22_src/updateutils folder from "https" to "http". You can easily modify by using the command in VIM with ":%s/https/http".
-
 
 ### Compile Serial CPU
 
 #### Complie and install
 ```
-cd amber22_src
+cd amber24_src
 cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/apps/amber22 -DCOMPILER=GNU -DCUDA=FALSE -DMPI=FALSE -DINSTALL_TESTS=FALSE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE -DMINICONDA_VERSION=py38_4.12.0
+cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=FALSE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
 make install -j8
-```
-
-#### Test
-```
-cd /apps/amber22
-source amber.sh
-make test.serial
 ```
 
 ### Compile for Serial GPU
 
-Ref: https://ambermd.org/GPUHardware.php
-
 #### Complie and install
 ```
-cd amber22_src
+cd amber24_src
 cd build
 make clean
-cmake .. -DCMAKE_INSTALL_PREFIX=/apps/amber22 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=FALSE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE -DMINICONDA_VERSION=py38_4.12.0
+cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
 make install -j8
-```
-
-#### Test
-```
-cd /apps/amber22
-source amber.sh
-make test.cuda.serial
 ```
 
 ### Compile for Parallel CPU
 
 #### Complie and install
 ```
-cd amber22_src
+cd amber24_src
 cd build
 make clean
-cmake .. -DCMAKE_INSTALL_PREFIX=/apps/amber22 -DCOMPILER=GNU -DCUDA=FALSE -DMPI=TRUE -DINSTALL_TESTS=FALSE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE -DMINICONDA_VERSION=py38_4.12.0
-make install -j8
-```
-
-#### Test
-```
-cd /apps/amber22
-export DO_PARALLEL='mpirun -np 2'
-test -f amber.sh  && source amber.sh
-export DO_PARALLEL='mpirun -np 2'
-make test.parallel
+cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DCUDA=FALSE -DMPI=TRUE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
+make install -j16
 ```
 
 ### Compile for Parallel GPU
 
-Ref: https://ambermd.org/GPUHardware.php
-
 #### Complie and install
 ```
-cd amber22_src
+cd amber24_src
 cd build
 make clean
-cmake .. -DCMAKE_INSTALL_PREFIX=/apps/amber22 -DCOMPILER=GNU -DMPI=TRUE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=FALSE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE -DMINICONDA_VERSION=py38_4.12.0
-make install -j8
-```
-
-#### Test
-```
-cd /apps/amber22
-export DO_PARALLEL='mpirun -np 2'
-test -f amber.sh  && source amber.sh
-export DO_PARALLEL='mpirun -np 2'
-make test.cuda.parallel
-```
-
-### Compile for Parallel GPU with NCCL
-
-Ref: https://ambermd.org/GPUHardware.php
-
-#### Download NVIDIA NCCL from https://developer.nvidia.com/nccl
-
-#### Install PnetCDF
-
-* Download PnetCDF from https://parallel-netcdf.github.io/wiki/Download.html
-```
-autoreconf -i
-./configure --prefix=/apps/PnetCDF
-make -j8
-make install
-```
-
-#### Complie and install
-```
-cd amber22_src
-export NCCL_HOME="~/apps/lib/nccl_2.6.4-1+cuda10.0_x86_64"
-cd build
-make clean
-cmake .. -DCMAKE_INSTALL_PREFIX=/apps/amber22 -DCOMPILER=GNU -DMPI=TRUE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DNCCL=TRUE -DPnetCDF_C_LIBRARY=~/apps/pnetcdf/lib/ -DPnetCDF_C_INCLUDE_DIR=~/apps/pnetcdf/include/ -DINSTALL_TESTS=FALSE -DDOWNLOAD_MINICONDA=TRUE -DMINICONDA_USE_PY3=TRUE -DMINICONDA_VERSION=py38_4.12.0
-make install -j8
-```
-
-#### Test
-```
-cd /apps/amber22
-export DO_PARALLEL='mpirun -np 2'
-test -f amber.sh  && source amber.sh
-export DO_PARALLEL='mpirun -np 2'
-make test.cuda.parallel
+cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DMPI=TRUE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
+make install -j16
 ```
