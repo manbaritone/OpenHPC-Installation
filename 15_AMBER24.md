@@ -2,7 +2,7 @@ Amber is a suite of biomolecular simulation programs. It began in the late 1970'
 
 The term "Amber" refers to two things. First, it is a set of molecular mechanical force fields for the simulation of biomolecules (these force fields are in the public domain, and are used in a variety of simulation programs). Second, it is a package of molecular simulation programs which includes source code and demos.
 
-Amber is distributed in two parts: AmberTools22 and Amber22. You can use AmberTools24 without Amber24, but not vice versa.
+Amber is distributed in two parts: AmberTools24 and Amber24. You can use AmberTools24 without Amber24, but not vice versa.
 
 Ref: https://ambermd.org/
 
