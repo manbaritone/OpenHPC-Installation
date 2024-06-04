@@ -2,7 +2,7 @@ GROMACS (GROningen MAchine for Chemical Simulations) is a high-performance molec
 
 GROMACS was initially developed in the early 1990s at the University of Groningen in the Netherlands by the research group led by Herman Berendsen. The primary motivation was to create a software package for simulating molecular dynamics, particularly for biomolecular systems. The first versions of GROMACS were focused on biochemical molecules and were written in the Fortran programming language. The software aimed to efficiently simulate molecular systems using the GROMOS force field.
 
-Ref: https://www.gromacs.org
+Ref: https://www.gromacs.org and https://www.gromacs.org/development.html
 
 ### Overview process of installation
 - Get the latest version of your C and C++ compilers.
