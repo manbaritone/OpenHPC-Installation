@@ -55,7 +55,7 @@ sudo make install
 #SBATCH --gres=gpu:1
 
 # Set memory (RAM) for use
-#SBATCH --mem=16GB
+#SBATCH --mem=8GB
 
 # Set wall time
 #SBATCH --time=3-00:00:00
