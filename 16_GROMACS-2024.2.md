@@ -20,15 +20,13 @@ Computer System: 2 x NVIDIA GeForce GTX 1070 Ti 8GB with Intel(R) Core(TM) i7-77
 
 Refs: https://manual.gromacs.org/2024.2/install-guide/index.html
 
-#### Download GROMACS 2024.2 and Extract the tarball file
+### Download GROMACS 2024.2 and Extract the tarball file
 ```
 wget https://ftp.gromacs.org/gromacs/gromacs-2024.2.tar.gz
 tar xfz gromacs-2024.2.tar.gz
 ```
 
 ### Compile and Install (with OpenMPI parallel and CUDA GPU)
-
-#### Compile and Install
 ```
 cd gromacs-2024.2
 mkdir build
