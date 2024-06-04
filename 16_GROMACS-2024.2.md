@@ -1,4 +1,6 @@
-GROMACS (GROningen MAchine for Chemical Simulations) is a high-performance molecular dynamics simulation software. It is primarily designed for simulating the interactions between molecules in complex systems, such as biological macromolecules, polymers, and non-biological systems.
+GROMACS (GROningen MAchine for Chemical Simulations) is a high-performance molecular dynamics simulation software. It is primarily designed for simulating the interactions between molecules in complex systems, such as biological macromolecules, polymers, and non-biological systems. 
+
+GROMACS was initially developed in the early 1990s at the University of Groningen in the Netherlands by the research group led by Herman Berendsen. The primary motivation was to create a software package for simulating molecular dynamics, particularly for biomolecular systems. The first versions of GROMACS were focused on biochemical molecules and were written in the Fortran programming language. The software aimed to efficiently simulate molecular systems using the GROMOS force field.
 
 Ref: https://www.gromacs.org
 
@@ -64,7 +66,7 @@ sudo make install
 #SBATCH --partition=qgpu_gtx1070ti
 
 # Set the name of a job
-#SBATCH --job-name=MD_MG8
+#SBATCH --job-name=gromacs_mdrun
 
 ######################################################
 
