@@ -10,7 +10,7 @@ Ref: https://www.gromacs.org and https://www.gromacs.org/development.html
 - Get and unpack the latest version of the GROMACS tarball.
 - Make a separate build directory and change to it.
 - Run cmake with the path to the source as an argument
-- Run make, make check, and make install
+- Run make, and make install
 - Source GMXRC to get access to GROMACS
 
 ### The System
