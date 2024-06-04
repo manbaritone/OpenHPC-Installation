@@ -42,33 +42,33 @@ sudo make install
 
 ################# Slurm Head #########################
  
-# set the number of nodes
+# Set the number of nodes
 #SBATCH --nodes=1
 
-# set the number of task
+# Set the number of task(s)
 #SBATCH --ntasks=1
 
-# set number of CPU
+# Set the number of task(s) per CPU core
 #SBATCH --ntasks-per-core=1
 
-# set number of GPU
+# Set the number of GPU
 #SBATCH --gres=gpu:1
 
-# set memory
+# Set memory (RAM) for use
 #SBATCH --mem=16GB
 
-# set wall time
+# Set wall time
 #SBATCH --time=3-00:00:00
 
-# set partition
+# Set partition
 #SBATCH --partition=qgpu_gtx1070ti
 
-# set name of job
+# Set the name of a job
 #SBATCH --job-name=MD_MG8
 
 ######################################################
 
-# set module that is using in this script, check by command 'ml av'
+# Set module that is used in this script. Check by command 'ml av'
 ml swap gnu7 gnu11
 ml cmake/3.27.6 cuda/11.8 openmpi4 pmix/2.2.2
 
