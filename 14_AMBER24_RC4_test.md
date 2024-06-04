@@ -1,7 +1,7 @@
 ## AMBER24_RC4_test on NVIDIA GeForce GTX 1070 Ti 8GB with Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz
 
 OS System: CentOS Linux release 7.6.1810 with CMake 3.27.6, CUDA 11.8, GCC 7.3, and OpenMPI 4.1.6 operated by Lmod
-Computer System: 2 x NVIDIA GeForce GTX 1070 Ti 8GB with Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz
+Computer System (Frontend node): 2 x NVIDIA GeForce GTX 1070 Ti 8GB with Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz
 
 ### Load modules
 ```
