@@ -5,7 +5,7 @@ GROMACS was initially developed in the early 1990s at the University of Groninge
 Ref: https://www.gromacs.org and https://www.gromacs.org/development.html
 
 ### Overview process of installation
-- Get the latest version of your C and C++ compilers.
+- Get the latest version of your C and C++ compilers. (Minimum version: GNU (gcc/libstdc++) 9 or LLVM (clang/libc++) 7 or Microsoft (MSVC) 2019)
 - Check that you have CMake version 3.18.4 or later.
 - Get and unpack the latest version of the GROMACS tarball.
 - Make a separate build directory and change to it.
