@@ -31,6 +31,13 @@ tar xvfj AmberTools24.tar.bz2
 tar xvfj Amber24.tar.bz2 
 ```
 
+#### Upgrade and update Amber
+```
+cd amber24_src
+./update_amber --update
+./update_amber --upgrade
+```
+
 ### Compile Serial CPU
 
 #### Complie and install
