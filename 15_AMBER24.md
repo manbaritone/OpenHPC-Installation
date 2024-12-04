@@ -38,7 +38,7 @@ tar xvfj Amber24.tar.bz2
 cd amber24_src
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=FALSE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
-make install -j8
+make -j16 && make install
 ```
 
 ### Compile for Serial GPU
@@ -49,7 +49,7 @@ cd amber24_src
 cd build
 make clean
 cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DMPI=FALSE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
-make install -j8
+make -j16 && make install
 ```
 
 ### Compile for Parallel CPU
@@ -60,7 +60,7 @@ cd amber24_src
 cd build
 make clean
 cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DCUDA=FALSE -DMPI=TRUE -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
-make install -j16
+make -j16 && make install
 ```
 
 ### Compile for Parallel GPU
@@ -71,5 +71,5 @@ cd amber24_src
 cd build
 make clean
 cmake .. -DCMAKE_INSTALL_PREFIX=/XXX/amber24 -DCOMPILER=GNU -DMPI=TRUE -DCUDA=TRUE -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8 -DINSTALL_TESTS=TRUE -DDOWNLOAD_MINICONDA=TRUE
-make install -j16
+make -j16 && make install
 ```
