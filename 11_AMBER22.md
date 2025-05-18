@@ -99,7 +99,7 @@ make test.parallel
 
 Ref: https://ambermd.org/GPUHardware.php
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber22_src
 cd build
@@ -133,7 +133,7 @@ make -j8
 make install
 ```
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber22_src
 export NCCL_HOME="~/apps/lib/nccl_2.6.4-1+cuda10.0_x86_64"
