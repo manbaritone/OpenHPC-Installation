@@ -39,7 +39,7 @@ tar xvfj pmemd24.tar.bz2
 ```
 
 ### AmberTools25 Installation
-**Note: please define destination folder for -DCMAKE_INSTALL_PREFIX flag**
+**Note: please define destination folder for installation by -DCMAKE_INSTALL_PREFIX flag**
 
 #### Upgrade and update Amber
 ```
