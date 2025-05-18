@@ -19,7 +19,7 @@ tar xvfj Amber24_rc4.tar.bz2
 
 ### Compile Serial CPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
@@ -36,7 +36,7 @@ make test.serial
 
 ### Compile for Serial GPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
@@ -54,7 +54,7 @@ make test.cuda.serial
 
 ### Compile for Parallel CPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
@@ -81,7 +81,7 @@ make test.parallel
 
 ### Compile for Parallel GPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
@@ -118,7 +118,7 @@ tar xvfj Amber24_rc4.tar.bz2
 
 ### Compile Serial CPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
