@@ -2,7 +2,7 @@ Amber is a suite of biomolecular simulation programs. It began in the late 1970'
 
 The term "Amber" refers to two things. First, it is a set of molecular mechanical force fields for the simulation of biomolecules (these force fields are in the public domain, and are used in a variety of simulation programs). Second, it is a package of molecular simulation programs which includes source code and demos.
 
-![Cover of Manual for Amber25][https://ambermd.org/doc12/Amber25.pdf]
+![https://ambermd.org/doc12/Amber25.pdf](https://ambermd.org/images/Amber25_cover.png)
 
 Starting in 2025, Amber and AmberTools are separate releases, residing in different folders. Each can be compiled on its own, without the other. One improvement is that compilation of just the pmemd program (say on a high-performance computer system) is now much simpler in the past. A second advantage for many users will be this: AmberTools is available as a pre-compiled conda package (see ambermd.org/GetAmber.php) which can be installed via “conda install”. Users who choose this option only need to download and compile pmemd24.tar.bz2.
 
