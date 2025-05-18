@@ -4,7 +4,7 @@ The term "Amber" refers to two things. First, it is a set of molecular mechanica
 
 Starting in 2025, Amber and AmberTools are separate releases, residing in different folders. Each can be compiled on its own, without the other. One improvement is that compilation of just the pmemd program (say on a high-performance computer system) is now much simpler in the past. A second advantage for many users will be this: AmberTools is available as a pre-compiled conda package (see ambermd.org/GetAmber.php) which can be installed via “conda install”. Users who choose this option only need to download and compile pmemd24.tar.bz2.
 
-Ref: https://ambermd.org/ and https://ambermd.org/doc12/Amber25.pdf
+Ref: https://ambermd.org/ and https://ambermd.org/doc12/Amber25.pdf \
 Download AmberTools25 and Amber24 : https://ambermd.org/GetAmber.php
 
 ### Pre-installation
