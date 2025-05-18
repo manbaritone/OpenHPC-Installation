@@ -40,7 +40,7 @@ cd amber24_src
 
 ### Compile Serial CPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
@@ -50,7 +50,7 @@ make -j16 && make install
 
 ### Compile for Serial GPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
@@ -61,7 +61,7 @@ make -j16 && make install
 
 ### Compile for Parallel CPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
@@ -72,7 +72,7 @@ make -j16 && make install
 
 ### Compile for Parallel GPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber24_src
 cd build
