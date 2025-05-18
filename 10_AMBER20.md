@@ -45,7 +45,7 @@ cd amber20_src
 
 ### Compile Serial CPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber20_src
 cd build
@@ -75,7 +75,7 @@ Amber tries to support all CUDA SDK versions up to 11.x. In the past, they have 
 * GTX-780Ti cards require a modified Bios from Exxact Corp to give correct numerical results.
 * GTX-Titan-Black Edition cards require NVIDIA Driver version >= 337.09 or 331.79 or later for correct numerical results.
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber20_src
 cd build
@@ -93,7 +93,7 @@ make test.cuda
 
 ### Compile for Parallel CPU
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber20_src
 cd build
@@ -126,7 +126,7 @@ Amber tries to support all CUDA SDK versions up to 11.x. In the past, they have 
 * GTX-780Ti cards require a modified Bios from Exxact Corp to give correct numerical results.
 * GTX-Titan-Black Edition cards require NVIDIA Driver version >= 337.09 or 331.79 or later for correct numerical results.
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber20_src
 cd build
@@ -171,7 +171,7 @@ make -j8
 make install
 ```
 
-#### Complie and install
+#### Compile and install
 ```
 cd amber20_src
 export NCCL_HOME="~/apps/lib/nccl_2.6.4-1+cuda10.0_x86_64"
